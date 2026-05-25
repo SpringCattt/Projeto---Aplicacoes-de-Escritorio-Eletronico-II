@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Engenharia Informática</title>
+    <!-- Ligação ao ficheiro CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <!-- Canvas animado do fundo Matrix -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Barra de Navegação -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cabeçalho / Hero -->
+    <section id="hero">
+        <div class="profile-img-placeholder" style="cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="document.getElementById('bioModal').style.display='flex'">
+            <img src="unnamed.jpg" alt="Foto de Juan Gonsalves">
+        </div>
+        <h1>Olá, eu sou o Juan Gonsalves</h1>
+        <div class="typewriter"><span id="type-text"></span><span class="cursor">_</span></div>
+        <p style="max-width: 600px; text-align: justify; margin-bottom: 1.5rem;">
+            Estudante de Engenharia Informática com experiência em ambientes dinâmicos e trabalho em equipa. Apaixonado por tecnologia e resolução de problemas, procuro desenvolver as minhas competências e iniciar a minha carreira na área de desenvolvimento de software.
+        </p>
+        
+        <!-- Contactos compactos no Hero com Ícones SVG (Ordem Atualizada) -->
+        <div class="contact-container" style="padding: 0; margin-top: 0; margin-bottom: 2rem; border-top: none; gap: 0.5rem;">
+            
+            <!-- Localização -->
+            <span class="contact-item" style="font-size: 0.95rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Estarreja, Aveiro - PT
+            </span>
+            
+            <!-- Telefone -->
+            <span class="contact-item" style="font-size: 0.95rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +351 916 681 053
+            </span>
+
+            <!-- GitHub -->
+            <a href="https://github.com/SpringCattt" target="_blank" class="contact-item link" style="font-size: 0.95rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                github.com/SpringCattt
+            </a>
+            
+            <!-- Email -->
+            <a href="mailto:juancarlosgds@gmail.com" class="contact-item link" style="font-size: 0.95rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                juancarlosgds@gmail.com
+            </a>
+            
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/juan-gonsalves-ds/" target="_blank" class="contact-item link" style="font-size: 0.95rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                linkedin.com/in/juan-gonsalves-ds/
+            </a>
+            
+        </div>
+
+        <button class="btn-terminal" id="openVideoBtn">./executar_apresentacao.sh</button>
+    </section>
+
+    <!-- Modal do Vídeo -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeVideoBtn">&times;</span>
+            <video id="myVideo" controls>
+                <source src="teu_video.mp4" type="video/mp4">
+                O teu browser não suporta a tag de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <!-- Modal da Mini Biografia -->
+    <div id="bioModal" class="modal" onclick="if(event.target == this) this.style.display='none'">
+        <div class="modal-content" style="max-width: 500px; text-align: center; padding: 2rem;">
+            <span class="close-btn" onclick="document.getElementById('bioModal').style.display='none'">&times;</span>
+            
+            <!-- Imagem maior -->
+            <img src="unnamed.jpg" alt="Foto de Juan Gonsalves" style="width: 200px; height: 200px; border-radius: 50%; border: 3px solid var(--accent-color); object-fit: cover; margin-bottom: 1.5rem; box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);">
+            
+            <!-- Título e Texto -->
+            <h2 style="color: var(--accent-color); margin-bottom: 1rem;">who_is_juan.sh</h2>
+            <p style="text-align: justify; color: var(--text-primary); font-size: 0.95rem; line-height: 1.6;">
+Future software developer focused on learning, building and improving every day.            </p>
+        </div>
+    </div>
+
+    <!-- Layout de Colunas (Sobre, Experiência e Sidebar) -->
+    <div class="layout-container">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            
+            <div class="terminal-card">
+                <h3>educação</h3>
+                <div class="card-info">
+                    <h4>ESTGA - Universidade de Aveiro</h4>
+                    <a href="https://www.ua.pt/pt/curso/1732" target="_blank" class="text-blue" style="display: block; text-decoration: none;">Licenciatura em Engenharia Informática Aplicada</a>
+                    <p class="text-green">2024 - Presente</p>
+                    <p style="font-size: 0.85rem; margin-top: 10px; color: var(--text-secondary);">
+                        Foco em programação, bases de dados, arquiteturas de software e usabilidade.
+                    </p>
+                </div>
+            </div>
+
+            <div class="terminal-card">
+                <h3>competências_técnicas</h3>
+                <div class="tech-list">
+                    <span class="tech-item">Sistemas Operativos (Linux/Windows)</span>
+                    <span class="tech-item">Algoritmos e Estruturas de Dados</span>
+                    <span class="tech-item">Programação Orientada a Objetos</span>
+                    <span class="tech-item">Desenvolvimento Web</span>
+                    <span class="tech-item">Bases de Dados</span>
+                </div>
+            </div>
+
+            <!-- Adicionado C/C++ e Java -->
+            <div class="terminal-card">
+                <h3>tecnologias</h3>
+                <ul class="skills-list">
+                    <li><span>JavaScript</span> <span class="stars">★★<span class="star-empty">★★★</span></span></li>
+                    <li><span>Git/Github</span> <span class="stars">★★★★<span class="star-empty">★</span></span></li>
+                    <li><span>HTML/CSS</span> <span class="stars">★★★★<span class="star-empty">★</span></span></li>
+                    <li><span>Python</span> <span class="stars">★★★<span class="star-empty">★★</span></span></li>
+                    <li><span>C/C++</span> <span class="stars">★★★<span class="star-empty">★★</span></span></li>
+                    <li><span>Java</span> <span class="stars">★★★★<span class="star-empty">★</span></span></li>
+                    <li><span>SQL</span> <span class="stars">★★★<span class="star-empty">★★</span></span></li>
+                </ul>
+            </div>
+
+            <div class="terminal-card">
+                <h3>idiomas</h3>
+                <div class="language-bar">
+                    <div class="lang-header"><span>Espanhol</span> <span>Nativo - C2</span></div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="language-bar">
+                    <div class="lang-header"><span>Português</span> <span>C2</span></div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="language-bar">
+                    <div class="lang-header"><span>Inglês</span> <span>Avançado - C1</span></div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div>
+                </div>
+            </div>
+
+        </aside> 
+        
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            
+            <section id="sobre">
+                <h2 class="section-title">who_am_i</h2>
+                <p style="text-align: justify;">
+                    Sou um estudante de Engenharia Informática com background em serviço ao cliente e gestão de eventos. Habituado a ambientes dinâmicos e de alta pressão, trago essa mesma capacidade de adaptação e resolução rápida de problemas para o mundo do código. À procura da minha primeira oportunidade em desenvolvimento de software.
+                </p>
+            </section>
+
+            <section id="experiencia">
+                <h2 class="section-title">Experiência Profissional</h2>
+                
+                <div class="timeline">
+                    
+                    <div class="timeline-item card">
+                        <div class="card-date">Julho 2025 - Fevereiro 2026</div>
+                        <h3>Empregado de Restaurante</h3>
+                        <p class="company">Restaurante Gran Sabana</p>
+                        <p class="description" style="text-align: justify; margin-top: 10px;">
+                            Trabalhei no restaurante enquanto estudava, principalmente em tarefas de gestão de armazém, limpeza e atendimento ao cliente. Esta experiência ajudou-me a desenvolver fortes competências organizacionais, responsabilidade e capacidade de adaptação a diferentes tarefas. Também aprendi a interagir com clientes de forma simpática e atenta, mesmo em situações de elevada pressão.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag tag-blue">atendimento_ao_cliente</span>
+                            <span class="tag tag-orange">trabalho_sob_pressão</span>
+                            <span class="tag tag-green">gestão_do_tempo</span>
+                            <span class="tag tag-purple">adaptabilidade</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item card">
+                        <div class="card-date">Abril 2025</div>
+                        <h3>Guia de Rebel Island</h3>
+                        <p class="company">Rebel Island 2025</p>
+                        <p class="description" style="text-align: justify; margin-top: 10px;">
+                            Trabalhei como guia durante o evento Rebel Island 2025, acompanhando grupos de estudantes ao longo da sua viagem e estadia. Era responsável por garantir a segurança, o bem-estar e o entretenimento dos participantes desde a chegada até à partida. A função exigia uma atitude proativa e responsável, boas competências de comunicação e forte trabalho em equipa com os restantes guias, de forma a assegurar uma experiência positiva e segura para todos os participantes.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag tag-blue">liderança_de_grupos</span>
+                            <span class="tag tag-green">trabalho_em_equipa</span>
+                            <span class="tag tag-orange">proatividade</span>
+                            <span class="tag tag-purple">resolução_de_problemas</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item card">
+                        <div class="card-date">2023 - 2025</div>
+                        <h3>Guia de Eventos</h3>
+                        <p class="company">Vários organizadores</p>
+                        <p class="description" style="text-align: justify; margin-top: 10px;">
+                            Participei em vários eventos, incluindo a 7.ª e 8.ª edição do Torneio Internacional de Basquetebol de Castelo Branco, bem como em eventos universitários na área da informática e em eventos organizados pela ShowTime. Nestes contextos, era responsável por manter os horários organizados, prevenir situações de batota e garantir a disponibilidade de todos os recursos necessários. Estas experiências permitiram-me desenvolver a capacidade de trabalhar sob pressão, atenção ao detalhe e coordenação com várias equipas para assegurar o bom funcionamento dos eventos.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tag tag-orange">gestão_de_conflitos</span>
+                            <span class="tag tag-blue">logística</span>
+                            <span class="tag tag-green">coordenação_entre_equipas</span>
+                            <span class="tag tag-purple">atenção_ao_detalhe</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main> 
+    </div> 
+
+    <!-- Nova secção de Projetos Separada e Larga -->
+    <section id="projetos" style="max-width: 1200px; margin: 0 auto; padding: 0 5% 100px;">
+        <h2 class="section-title">Projetos</h2>
+        
+        <!-- Usamos um grid aqui para que os cartões fiquem lado a lado em ecrãs grandes -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+            
+            <div class="card" style="background-color: rgba(22, 27, 34, 0.9); backdrop-filter: blur(5px); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s ease, border-color 0.3s ease;">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem; font-family: var(--font-code);">Gestor de Tarefas (Exemplo)</h3>
+                <p style="font-size: 0.95rem; text-align: justify; margin-bottom: 1rem; color: var(--text-primary);">
+                    Uma plataforma desenvolvida para automatizar a coordenação de equipas e distribuição de tarefas diárias em eventos ou pequenos negócios. Conta com um painel de administração e sistema de notificações em tempo real.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag tag-blue">Python</span>
+                    <span class="tag tag-green">Django</span>
+                    <span class="tag tag-purple">PostgreSQL</span>
+                </div>
+            </div>
+
+            <div class="card" style="background-color: rgba(22, 27, 34, 0.9); backdrop-filter: blur(5px); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s ease, border-color 0.3s ease;">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem; font-family: var(--font-code);">Portfólio Interativo</h3>
+                <p style="font-size: 0.95rem; text-align: justify; margin-bottom: 1rem; color: var(--text-primary);">
+                    Website estático desenhado com foco em usabilidade, sem recorrer a pesadas bibliotecas externas. Integra um fundo com efeito "Matrix" desenhado via Canvas API e layouts perfeitamente responsivos usando CSS Grid.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag tag-orange">HTML5</span>
+                    <span class="tag tag-blue">CSS3 (Grid/Flex)</span>
+                    <span class="tag tag-green">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="card" style="background-color: rgba(22, 27, 34, 0.9); backdrop-filter: blur(5px); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; transition: transform 0.3s ease, border-color 0.3s ease;">
+                <h3 style="color: var(--accent-color); margin-bottom: 0.5rem; font-family: var(--font-code);">Sistema de Inventário (Exemplo)</h3>
+                <p style="font-size: 0.95rem; text-align: justify; margin-bottom: 1rem; color: var(--text-primary);">
+                    Aplicação para gestão de stock focado no setor da restauração, otimizando o fluxo de entradas e saídas e evitando ruturas de material através de alertas automáticos.
+                </p>
+                <div class="tech-tags">
+                    <span class="tag tag-green">Java</span>
+                    <span class="tag tag-purple">Spring Boot</span>
+                    <span class="tag tag-orange">MySQL</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <footer>
+        <p>echo "Contato: teu.email@ua.pt" > /dev/null</p>
+        <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem;">
+            Desenvolvido aplicando as regras de usabilidade (AEE II) © 2026
+        </p>
+    </footer>
+
+    <!-- Ligação ao ficheiro JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
