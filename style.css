@@ -59,7 +59,7 @@ nav {
 /* ========================================== */
 .layout-container {
     display: grid; grid-template-columns: 1fr 380px; gap: 3rem; max-width: 1300px; 
-    margin: 0 auto; padding: 20px 5% 0px; align-items: stretch; /* Estica a barra lateral até ao fundo do main content */
+    margin: 0 auto; padding: 20px 5% 0px; align-items: stretch;
 }
 section { scroll-margin-top: 100px; padding-top: 20px; }
 
@@ -113,12 +113,10 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
 /* ========================================== */
 .timeline { position: relative; padding-left: 40px; }
 
-/* Removemos as linhas globais que estavam a bugar */
 .timeline::before, .timeline::after { display: none; }
 
 .timeline-item { position: relative; margin-bottom: 2.5rem; }
 .timeline-item:last-child { margin-bottom: 0; }
-
 
 .timeline-item::before {
     content: ''; position: absolute; left: -20px; top: 32px; 
@@ -138,33 +136,26 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
     background-position: 0 -40px; 
 }
 
-/* NÃO HÁ linha abaixo do último círculo */
 .timeline-item:last-child::after { display: none; }
 
-
-/* 3. LÓGICA DE SINCRONIZAÇÃO MATEMÁTICA (Ciclo de 7 segundos) */
-
-/* Círculo 1 (Arranca aos 0s) */
+/* Animações Timeline */
 @keyframes pulse-c1 {
     0% { background-color: var(--accent-green); box-shadow: 0 0 15px var(--accent-green); }
     10%, 100% { background-color: var(--bg-color); box-shadow: 0 0 0 transparent; }
 }
 
-/* Luz a descer do Círculo 1 para o 2 (0% a 20% do tempo) */
 @keyframes scan-s1 {
     0% { background-position: 0 -40px; }
     20% { background-position: 0 calc(100% + 40px); }
-    20.1%, 100% { background-position: 0 -40px; } /* Reseta a luz, mas a linha base nunca some */
+    20.1%, 100% { background-position: 0 -40px; } 
 }
 
-/* Círculo 2 (Acende INSTANTANEAMENTE aos 20%) */
 @keyframes pulse-c2 {
     0%, 19.9% { background-color: var(--bg-color); box-shadow: 0 0 0 transparent; }
     20% { background-color: var(--accent-green); box-shadow: 0 0 15px var(--accent-green); }
     30%, 100% { background-color: var(--bg-color); box-shadow: 0 0 0 transparent; }
 }
 
-/* Luz a descer do Círculo 2 para o 3 (20% a 40% do tempo) */
 @keyframes scan-s2 {
     0%, 19.9% { background-position: 0 -40px; }
     20% { background-position: 0 -40px; }
@@ -172,24 +163,18 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
     40.1%, 100% { background-position: 0 -40px; }
 }
 
-/* Círculo 3 (Acende INSTANTANEAMENTE aos 40%) */
 @keyframes pulse-c3 {
     0%, 39.9% { background-color: var(--bg-color); box-shadow: 0 0 0 transparent; }
     40% { background-color: var(--accent-green); box-shadow: 0 0 15px var(--accent-green); }
     50%, 100% { background-color: var(--bg-color); box-shadow: 0 0 0 transparent; }
 }
 
-/* Aplicação das Animações */
 .timeline-item:nth-child(1)::before { animation: pulse-c1 7s infinite; }
 .timeline-item:nth-child(1)::after  { animation: scan-s1 7s infinite; }
-
 .timeline-item:nth-child(2)::before { animation: pulse-c2 7s infinite; }
 .timeline-item:nth-child(2)::after  { animation: scan-s2 7s infinite; }
-
 .timeline-item:nth-child(3)::before { animation: pulse-c3 7s infinite; }
 
-
-/* Cartão Independente (Move-se no hover sem afetar a linha) */
 .timeline-card {
     position: relative; background-color: rgba(18, 24, 31, 0.85); backdrop-filter: blur(5px);
     border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;
@@ -213,7 +198,6 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
 .timeline-card ul { margin-top: 10px; margin-bottom: 1.8rem; padding-left: 1.2rem; color: var(--text-primary); text-align: justify; }
 .timeline-card ul li { margin-bottom: 8px; }
 
-/* Tags Coloridas nas Experiências */
 .tech-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .tag { padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-family: var(--font-code); border: 1px solid; transition: all 0.3s ease; }
 .tag:hover { transform: scale(1.05); }
@@ -236,22 +220,62 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
 /* ========================================== */
 .full-width-section { max-width: 1300px; margin: 0 auto; padding: 20px 5% 100px; }
 .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 2.5rem; margin-bottom: 4rem;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); 
+    gap: 2.5rem; 
+    margin-bottom: 4rem;
 }
 
 .project-card {
     background-color: rgba(18, 24, 31, 0.85); backdrop-filter: blur(5px);
     border: 1px solid var(--border-color); border-top: 3px solid var(--accent-color); 
-    border-radius: 8px; padding: 2rem 1.8rem; min-height: 280px; 
+    border-radius: 8px; 
+    padding: 2rem 1.4rem; 
+    min-height: 280px; 
     display: flex; flex-direction: column; justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
 .project-card:hover { transform: translateY(-8px); border-color: var(--accent-color); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5); }
 
-.project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem; }
+/* Contenedor principal de la cabecera (ahora en columna) */
+.project-header { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+    margin-bottom: 1rem; 
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 1.2rem; 
+}
+
+/* Fila 1: Título e Ícono de GitHub */
+.project-title-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.project-title-wrapper h3 {
+    font-size: 1.15rem; 
+    color: var(--accent-color);
+    font-family: var(--font-code);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Fila 2: Información de semestre y disciplina */
+.project-meta-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
 .project-card .description { flex-grow: 1; margin-bottom: 1.5rem; text-align: justify; font-size: 0.95rem; line-height: 1.7; }
 
-/* Bloco único texto centrado para CAT */
 .projects-footer {
     text-align: center; font-family: var(--font-code); color: var(--text-primary);
     font-size: 1.1rem; background-color: transparent; border: none; 
