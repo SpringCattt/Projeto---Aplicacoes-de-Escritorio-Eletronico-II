@@ -119,24 +119,23 @@ section { scroll-margin-top: 100px; padding-top: 20px; }
 .timeline-item { position: relative; margin-bottom: 2.5rem; }
 .timeline-item:last-child { margin-bottom: 0; }
 
-/* 1. Círculo estático: SEMPRE com borda verde */
+
 .timeline-item::before {
-    content: ''; position: absolute; left: -20px; top: 25px; 
+    content: ''; position: absolute; left: -20px; top: 32px; 
     width: 16px; height: 16px; border-radius: 50%; 
     border: 2px solid var(--accent-green); 
     background-color: var(--bg-color); 
     transform: translateX(-50%); z-index: 3; 
 }
 
-/* 2. Segmento estático que liga um círculo ao próximo (SEMPRE VISÍVEL) */
 .timeline-item::after {
-    content: ''; position: absolute; left: -20px; top: 41px; 
-    width: 2px; height: calc(100% + 2.5rem - 16px); /* Matemática exata até ao próximo círculo */
+    content: ''; position: absolute; left: -20px; top: 48px; 
+    width: 2px; height: calc(100% + 2.5rem - 16px); 
     transform: translateX(-50%); 
-    background-color: var(--border-color); /* Linha base cinzenta sempre visível */
+    background-color: var(--border-color); 
     background-image: linear-gradient(to bottom, transparent, var(--accent-green), transparent);
     background-size: 100% 40px; background-repeat: no-repeat; z-index: 1;
-    background-position: 0 -40px; /* Esconde a luz inicial em cima, mas a linha fica! */
+    background-position: 0 -40px; 
 }
 
 /* NÃO HÁ linha abaixo do último círculo */
