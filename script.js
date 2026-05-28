@@ -2,11 +2,9 @@
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 
-// Define o tamanho para o ecrã todo
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Caracteres utilizados no efeito
 const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
 const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const nums = '0123456789';
@@ -14,126 +12,107 @@ const alphabet = katakana + latin + nums;
 
 const fontSize = 16;
 const columns = canvas.width / fontSize;
-
 const drops = [];
-for(let x = 0; x < columns; x++) {
-    drops[x] = 1;
-}
+for(let x = 0; x < columns; x++) { drops[x] = 1; }
 
-// Variáveis para controlar os frames e reduzir o lag da animação
 let lastDrawTime = 0;
-const fps = 24; // 24 frames por segundo mantém o efeito Matrix fluido mas poupa muita CPU
+const fps = 24; 
 const interval = 1000 / fps;
 
 function drawMatrix(timestamp) {
-    // requestAnimationFrame é muito mais otimizado que o setInterval
     requestAnimationFrame(drawMatrix); 
-
     const deltaTime = timestamp - lastDrawTime;
     
-    // Só desenha se tiver passado tempo suficiente no ecrã
     if (deltaTime > interval) {
-        // Fundo semi-transparente para dar efeito de rastro
         ctx.fillStyle = 'rgba(13, 17, 23, 0.05)'; 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#00e676'; // Verde característico
+        ctx.fillStyle = '#00e676'; 
         ctx.font = fontSize + 'px monospace';
 
         for(let i = 0; i < drops.length; i++) {
             const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            // Reset da gota de forma aleatória quando passa do ecrã
-            if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
+            if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) { drops[i] = 0; }
             drops[i]++;
         }
-        
         lastDrawTime = timestamp - (deltaTime % interval);
     }
 }
 
-// Inicia a animação otimizada
 requestAnimationFrame(drawMatrix);
-
-// Ajusta o canvas se a janela for redimensionada
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 
 
-// ----------------------------------------------------
-// 2. Lógica Anterior (Máquina de escrever e Modal de Vídeo)
+// 2. Máquina de Escrever do Título (Hero)
 const texts = [
     "Estudante de Engenharia Informática", 
     "Code. Learn. Build. Repeat.", 
     "Desenvolvedor em formação",
     "Software • Networking • Problem Solving"
 ];
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
-let isDeleting = false;
+let count = 0; let index = 0; let currentText = ""; let letter = ""; let isDeleting = false;
 
 function type() {
     if (count === texts.length) { count = 0; }
     currentText = texts[count];
-    
-    if (isDeleting) { 
-        letter = currentText.slice(0, --index); 
-    } else { 
-        letter = currentText.slice(0, ++index); 
-    }
+    if (isDeleting) { letter = currentText.slice(0, --index); } else { letter = currentText.slice(0, ++index); }
 
     const typeTextElement = document.getElementById("type-text");
-    if (typeTextElement) { 
-        typeTextElement.textContent = letter; 
-    }
+    if (typeTextElement) { typeTextElement.textContent = letter; }
 
     let typeSpeed = isDeleting ? 50 : 100;
-    
     if (!isDeleting && letter.length === currentText.length) {
-        typeSpeed = 2000; // Pausa no final da palavra
-        isDeleting = true;
+        typeSpeed = 2000; isDeleting = true;
     } else if (isDeleting && letter.length === 0) {
-        isDeleting = false;
-        count++;
-        typeSpeed = 500; // Pausa antes de escrever a próxima
+        isDeleting = false; count++; typeSpeed = 500; 
     }
-    
     setTimeout(type, typeSpeed);
 }
+document.addEventListener("DOMContentLoaded", function() { setTimeout(type, 1000); });
 
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(type, 1000);
-});
 
-// Lógica do modal
-const modal = document.getElementById("videoModal");
-const btn = document.getElementById("openVideoBtn");
-const span = document.getElementById("closeVideoBtn");
+// 3. Modal de Vídeo
+const videoModal = document.getElementById("videoModal");
+const videoBtn = document.getElementById("openVideoBtn");
+const closeVideoBtn = document.getElementById("closeVideoBtn");
 const video = document.getElementById("myVideo");
 
-if (btn) { 
-    btn.onclick = function() { 
-        modal.style.display = "flex"; 
-    } 
-}
+if (videoBtn) { videoBtn.onclick = function() { videoModal.style.display = "flex"; } }
+if (closeVideoBtn) { closeVideoBtn.onclick = function() { videoModal.style.display = "none"; video.pause(); } }
 
-if (span) { 
-    span.onclick = function() { 
-        modal.style.display = "none"; 
-        video.pause(); 
-    } 
-}
 
-window.onclick = function(event) {
-    if (event.target == modal) { 
-        modal.style.display = "none"; 
-        video.pause(); 
+// 4. Lógica de Escrita Animada no Modal da Biografia
+const bioModal = document.getElementById("bioModal");
+const bioTextElement = document.getElementById("bio-text");
+const bioTextString = "Future software developer focused on learning, building and improving every day...";
+let bioTyping = false;
+let bioCharIndex = 0;
+
+function typeBioText() {
+    if (bioCharIndex < bioTextString.length && bioTyping) {
+        bioTextElement.innerHTML += bioTextString.charAt(bioCharIndex);
+        bioCharIndex++;
+        setTimeout(typeBioText, 25); // Velocidade da digitação da Bio
     }
+}
+
+function openBioModal() {
+    bioModal.style.display = "flex";
+    if (!bioTyping) {
+        bioTyping = true;
+        bioCharIndex = 0;
+        bioTextElement.innerHTML = ""; // Limpa para escrever do zero
+        typeBioText();
+    }
+}
+
+function closeBioModal() {
+    bioModal.style.display = "none";
+    bioTyping = false; // Interrompe a animação se for fechado
+}
+
+// Fechar modais ao clicar fora
+window.onclick = function(event) {
+    if (event.target == videoModal) { videoModal.style.display = "none"; video.pause(); }
+    if (event.target == bioModal) { closeBioModal(); }
 }
