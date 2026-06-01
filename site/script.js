@@ -71,14 +71,39 @@ function type() {
 document.addEventListener("DOMContentLoaded", function() { setTimeout(type, 1000); });
 
 
-// 3. Modal de Vídeo
-const videoModal = document.getElementById("videoModal");
-const videoBtn = document.getElementById("openVideoBtn");
-const closeVideoBtn = document.getElementById("closeVideoBtn");
-const video = document.getElementById("myVideo");
+// ==========================================
+// CONTROLO DO MODAL DE VÍDEO (OTIMIZADO)
+// ==========================================
+const openVideoBtn = document.getElementById('openVideoBtn');
+const videoModal = document.getElementById('videoModal');
+const closeVideoBtn = document.getElementById('closeVideoBtn');
+const myVideo = document.getElementById('myVideo');
+const matrixCanvas = document.getElementById('matrix-canvas'); // Referencia al fondo pesado
 
-if (videoBtn) { videoBtn.onclick = function() { videoModal.style.display = "flex"; } }
-if (closeVideoBtn) { closeVideoBtn.onclick = function() { videoModal.style.display = "none"; video.pause(); } }
+// Abrir modal e reproduzir o vídeo
+openVideoBtn.addEventListener('click', () => {
+    videoModal.style.display = "flex";
+    if (matrixCanvas) matrixCanvas.style.display = "none"; // DESLIGA O MATRIX
+    myVideo.play();
+});
+
+// Função para fechar e limpar
+const closeModal = () => {
+    videoModal.style.display = "none";
+    if (matrixCanvas) matrixCanvas.style.display = "block"; // LIGA O MATRIX DE VOLTA
+    myVideo.pause();
+    myVideo.currentTime = 0; 
+};
+
+// Fechar modal no X
+closeVideoBtn.addEventListener('click', closeModal);
+
+// Fechar modal ao clicar fora do vídeo
+window.addEventListener('click', (event) => {
+    if (event.target === videoModal) {
+        closeModal();
+    }
+});
 
 
 // 4. Lógica de Escrita Animada no Modal da Biografia

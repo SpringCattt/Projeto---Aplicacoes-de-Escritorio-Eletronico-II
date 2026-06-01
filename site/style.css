@@ -331,4 +331,15 @@ footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border-c
     .main-content { order: 1; }
     .sidebar { order: 2; gap: 1.5rem; }
     .nav-links { gap: 1.2rem; font-size: 0.85rem; }
+
+    #videoModal {
+    backdrop-filter: none !important; /* Matamos o blur pesado */
+    background-color: rgba(0, 0, 0, 0.98) !important; /* Fundo super escuro para compensar */
+}
+
+#videoModal .modal-content {
+    box-shadow: none !important; /* Sem brilhos pesados a renderizar em tempo real */
+    border: none !important;
+    background-color: transparent !important;
+}
 }
