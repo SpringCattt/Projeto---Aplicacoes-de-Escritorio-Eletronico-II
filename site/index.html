@@ -8,29 +8,30 @@
 </head>
 
 <body>
-    
     <canvas id="matrix-canvas"></canvas>
 
     <nav>
         <ul class="nav-links">
-            <li><a href="#hero">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#experiencia">Experiência</a></li>
-            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#inicio" class="nav-btn active">Início</a></li>
+            <li><a href="#sobre" class="nav-btn">Sobre</a></li>
+            <li><a href="#hobbies" class="nav-btn">Hobbies</a></li>
+            <li><a href="#experiencia" class="nav-btn">Experiência</a></li>
+            <li><a href="#projetos" class="nav-btn">Projetos</a></li>
         </ul>
     </nav>
 
-    <section id="hero">
+    <!-- SECÇÃO 1: INÍCIO -->
+    <section id="inicio" class="page-section active">
         <div class="profile-img-placeholder glow-effect" style="cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="openBioModal()">
-            <img src="unnamed.jpg" alt="Foto de Juan Gonsalves">
+            <img src="imagens/unnamed.jpg" alt="Foto de Juan Gonsalves">
         </div>
         <h1>Olá, eu sou o Juan Gonsalves</h1>
         <div class="typewriter"><span id="type-text"></span><span class="cursor">_</span></div>
-        <p style="max-width: 750px; text-align: center; margin: 0 auto 2rem auto; color: var(--text-primary);">
-            Estudante de Engenharia Informática com experiência em ambientes dinâmicos e trabalho em equipa. Apaixonado por tecnologia e resolução de problemas, procuro desenvolver as minhas competências e iniciar a minha carreira na área de desenvolvimento de software.
+        <p style="max-width: 750px; text-align: center; margin: 0 auto 1.5rem auto; color: var(--text-primary);">
+            Estudante de Engenharia Informática. Apaixonado por tecnologia e resolução de problemas, em busca da minha primeira oportunidade em desenvolvimento de software.
         </p>
         
-        <div class="contact-container" style="padding: 0; margin-top: 0; margin-bottom: 2rem; border-top: none; gap: 1rem;">
+        <div class="contact-container">
             <span class="contact-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 Estarreja, Aveiro - PT
@@ -43,10 +44,6 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 github.com/SpringCattt
             </a>
-            <a href="mailto:juancarlosgds@gmail.com" class="contact-item link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                juancarlosgds@gmail.com
-            </a>
             <a href="https://linkedin.com/in/juan-gonsalves-ds/" target="_blank" class="contact-item link">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 linkedin.com/in/juan-gonsalves-ds/
@@ -56,113 +53,18 @@
         <button class="btn-terminal" id="openVideoBtn">./executar_video.sh</button>
     </section>
 
-    <div id="videoModal" class="modal">
-        <div class="modal-content animate-pop">
-            <span class="close-btn" id="closeVideoBtn">&times;</span>
-            <video id="myVideo" controls>
-                <source src="video_cv.mp4" type="video/mp4">
-                O teu browser não suporta a tag de vídeo.
-            </video>
-        </div>
-    </div>
-
-    <div id="bioModal" class="modal" onclick="if(event.target == this) closeBioModal()">
-        <div class="modal-content animate-pop" style="max-width: 550px;">
-            <span class="close-btn" onclick="closeBioModal()">&times;</span>
-            <img src="unnamed.jpg" alt="Foto de Juan Gonsalves">
-            <h2 style="color: var(--accent-color); margin-bottom: 1rem;">who_is_juan.sh</h2>
-            <p id="bio-text" style="text-align: justify; text-align-last: center; color: var(--text-primary); font-size: 0.95rem; min-height: 120px; margin: 0 auto;"></p>
-        </div>
-    </div>
-
-    <div class="layout-container">
+    <!-- SECÇÃO 2: SOBRE -->
+    <section id="sobre" class="page-section">
+        <h2 class="section-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span><span style="color: var(--text-primary);">~/</span>who_am_i</span>
+        </h2>
         
-        <main class="main-content">
-            
-            <section id="sobre">
-                <h2 class="section-title">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <span><span style="color: var(--text-primary);">~/</span>who_am_i</span>
-                </h2>
-                <p style="text-align: justify;">
-                    Sou um estudante de Engenharia Informática com background em serviço ao cliente e gestão de eventos. Habituado a ambientes dinâmicos e de alta pressão, trago essa mesma capacidade de adaptação e resolução rápida de problemas para o mundo do código. À procura da minha primeira oportunidade em desenvolvimento de software.
-                </p>
-            </section>
+        <p class="who-am-i-text">
+            Sou um estudante de Engenharia Informática com background em serviço ao cliente e gestão de eventos. Habituado a ambientes dinâmicos e de alta pressão, trago essa mesma capacidade de adaptação e resolução rápida de problemas para o mundo do código. À procura da minha primeira oportunidade em desenvolvimento de software.
+        </p>
 
-            <section id="experiencia" style="margin-top: 4rem;">
-                <h2 class="section-title">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                    <span><span style="color: var(--text-primary);">~/</span>experiencia</span>
-                </h2>
-                
-                <div class="timeline">
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-card fade-up">
-                            <div class="card-date">JUL 2025 - FEV 2026</div>
-                            <h3 style="margin-bottom: 5px;">Empregado de Restaurante</h3>
-                            <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Restaurante Gran Sabana</p>
-                            
-                            <ul>
-                                <li>Gestão de armazém, limpeza e atendimento direto ao cliente.</li>
-                                <li>Desenvolvimento de forte adaptabilidade em situações de elevada pressão.</li>
-                                <li>Interação simpática e atenta, garantindo a satisfação do cliente.</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tag tag-blue">atendimento_ao_cliente</span>
-                                <span class="tag tag-orange">trabalho_sob_pressão</span>
-                                <span class="tag tag-green">gestão_do_tempo</span>
-                                <span class="tag tag-purple">adaptabilidade</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card fade-up" style="animation-delay: 0.2s;">
-                            <div class="card-date">ABR 2025</div>
-                            <h3 style="margin-bottom: 5px;">Guia de Rebel Island</h3>
-                            <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Rebel Island 2025</p>
-                            
-                            <ul>
-                                <li>Liderança de grupos de estudantes em viagens e estadias.</li>
-                                <li>Coordenação de atividades de segurança, bem-estar e entretenimento.</li>
-                                <li>Comunicação proativa e trabalho em equipa para uma experiência positiva.</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tag tag-blue">liderança_de_grupos</span>
-                                <span class="tag tag-green">trabalho_em_equipa</span>
-                                <span class="tag tag-orange">proatividade</span>
-                                <span class="tag tag-purple">resolução_de_problemas</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card fade-up" style="animation-delay: 0.4s;">
-                            <div class="card-date">SET 2023 - MAI 2025</div>
-                            <h3 style="margin-bottom: 5px;">Guia de Eventos</h3>
-                            <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Vários organizadores</p>
-                            
-                            <ul>
-                                <li>Logística e coordenação operacional em grandes eventos internacionais e universitários.</li>
-                                <li>Gestão centralizada de horários e recursos essenciais para o funcionamento.</li>
-                                <li>Controlo de detalhes e trabalho sob pressão para garantir o sucesso dos eventos.</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tag tag-orange">gestão_de_conflitos</span>
-                                <span class="tag tag-blue">logística</span>
-                                <span class="tag tag-green">coordenação_entre_equipas</span>
-                                <span class="tag tag-purple">atenção_ao_detalhe</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </main> 
-
-        <aside class="sidebar">
-            
+        <div class="sobre-grid">
             <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
                     <span style="color: var(--accent-green); margin-right: 8px;">~/</span>educação
@@ -182,7 +84,7 @@
                 </div>
             </div>
 
-            <div class="terminal-card fade-up" style="animation-delay: 0.2s;">
+            <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
                     <span style="color: var(--accent-green); margin-right: 8px;">~/</span>competências_técnicas
                 </h3>
@@ -195,28 +97,7 @@
                 </div>
             </div>
 
-            <div class="terminal-card fade-up" style="animation-delay: 0.4s;">
-                <h3 style="display: flex; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
-                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>tecnologias
-                </h3>
-                
-                <div style="margin-bottom: 1.2rem;">
-                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Linguagens]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Python, Java, C/C++, JavaScript</p>
-                </div>
-                
-                <div style="margin-bottom: 1.2rem;">
-                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Web & DB]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> HTML, CSS, SQL</p>
-                </div>
-                
-                <div>
-                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Ferramentas]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Git/Github</p>
-                </div>
-            </div>
-
-            <div class="terminal-card fade-up" style="animation-delay: 0.6s;">
+            <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
                     <span style="color: var(--accent-green); margin-right: 8px;">~/</span>idiomas
                 </h3>
@@ -235,23 +116,211 @@
                 </div>
             </div>
 
-        </aside> 
-    </div> 
-
-    <div class="cyber-separator"></div>
-
-    <section id="projetos" class="full-width-section">
-        
-        <div style="display: flex; justify-content: center; margin-bottom: 4rem;">
-            <h2 class="section-title" style="border-bottom: none; margin: 0;">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                <span><span style="color: var(--text-primary);">~/</span>projetos</span>
-            </h2>
+            <div class="terminal-card fade-up">
+                <h3 style="display: flex; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>tecnologias
+                </h3>
+                <div style="margin-bottom: 1.2rem;">
+                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Linguagens]</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Python, Java, C/C++, JavaScript</p>
+                </div>
+                <div style="margin-bottom: 1.2rem;">
+                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Web & DB]</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> HTML, CSS, SQL</p>
+                </div>
+                <div>
+                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Ferramentas]</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Git/Github</p>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- SECÇÃO 3: HOBBIES -->
+    <section id="hobbies" class="page-section">
+        <h2 class="section-title">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span><span style="color: var(--text-primary);">~/</span>interesses_e_hobbies</span>
+        </h2>
+
+        <div class="hobbies-list">
+            <!-- Gaming -->
+            <div class="hobby-row hobby-gaming fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🎮</span> [gaming]</h3>
+                </div>
+                <p class="hobby-text">Sempre gostei de videojogos. É o meu formato preferido para descontrair no fim do dia e divertir-me com amigos em jogos competitivos e cooperativos.</p>
+                <div class="hobby-images">
+                    <img src="imagens/gaming 5.jpg" alt="Gaming"> <img src="imagens/gaming 7.jpg" alt="Gaming"> <img src="imagens/gaming 3.jpg" alt="Gaming">
+                </div>
+            </div>
+
+            <!-- Gym -->
+            <div class="hobby-row hobby-gym fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🏋️‍♂️</span> [gym]</h3>
+                </div>
+                <p class="hobby-text">O ginásio faz parte da minha rotina. É o espaço onde desligo um pouco dos ecrãs, cuido da saúde física e mantenho o corpo ativo.</p>
+                <div class="hobby-images">
+                    <img src="imagens/gym 1.png" alt="Gym"> <img src="imagens/gym 2.png" alt="Gym"> <img src="imagens/gym 3.png" alt="Gym">
+                </div>
+            </div>
+
+            <!-- Anime / Manga -->
+            <div class="hobby-row hobby-anime fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🎌</span> [anime] & [manga]</h3>
+                </div>
+                <p class="hobby-text">Gosto bastante de acompanhar anime e ler manga. Aprecio a arte visual japonesa e é uma ótima forma de entretenimento para relaxar.</p>
+                <div class="hobby-images">
+                    <img src="imagens/anime 4.jpeg" alt="Anime"> <img src="imagens/anime 6.jpeg" alt="Anime"> <img src="imagens/anime 5.jpeg" alt="Anime">
+                </div>
+            </div>
+
+            <!-- Tecnologia -->
+            <div class="hobby-row hobby-tech fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">💻</span> [tecnologia]</h3>
+                </div>
+                <p class="hobby-text">Tenho um interesse genuíno por computadores e software. Gosto de explorar ferramentas novas e perceber como as coisas são montadas por trás dos bastidores.</p>
+                <div class="hobby-images">
+                    <img src="imagens/tecno 1.jpeg" alt="Tech"> <img src="imagens/tecno 2.jpg" alt="Tech"> <img src="imagens/tecno 4.jpg" alt="Tech">
+                </div>
+            </div>
+
+            <!-- Sportbikes -->
+            <div class="hobby-row hobby-r6 fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🏍️</span> [sportbikes] -> Yamaha R6 2000</h3>
+                </div>
+                <p class="hobby-text">Sempre tive um grande fascínio por motos desde a primeira vez que experimentei uma. Gosto imenso da sensação de liberdade e de conduzir, sempre com respeito pela estrada. A minha companheira atual é uma Yamaha R6 do 2000, com a qual também aprendo bastante sobre mecânica.</p>
+                <div class="hobby-images">
+                    <img src="imagens/r6 1.jpg" alt="Yamaha R6"> <img src="imagens/r6 2.jpg" alt="Yamaha R6"> <img src="imagens/r6 6.png" alt="Yamaha R6">
+                </div>
+            </div>
+
+            <!-- Gata Sasha -->
+            <div class="hobby-row hobby-sasha fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🐈‍⬛</span> Meet Sasha 🐾</h3>
+                </div>
+                <p class="hobby-text">Esta é a Sasha, a minha gata e a verdadeira dona da casa. Passa a maior parte do tempo a dormir por perto enquanto estou no computador.</p>
+                <div class="hobby-images">
+                    <img src="imagens/sasha 1.jpg" alt="Sasha"> <img src="imagens/sasha 4.jpeg" alt="Sasha"> <img src="imagens/sasha 5.jpg" alt="Sasha">
+                </div>
+            </div>
+
+            <!-- Gato Felix -->
+            <div class="hobby-row hobby-felix fade-up">
+                <div class="hobby-header">
+                    <h3><span class="hobby-emoji">🐈</span> Meet Felix 🐾</h3>
+                </div>
+                <p class="hobby-text">E este é o Félix, o meu outro gato! Amarelo, branco, super peludo e com uns olhos verdes inconfundíveis. É o companheiro perfeito (e o mestre em espalhar pelo pela casa toda).</p>
+                <div class="hobby-images">
+                    <img src="imagens/felix 1.jpg" alt="Gato Felix"> <img src="imagens/felix 2.jpg" alt="Gato Felix"> <img src="imagens/felix 3.jpg" alt="Gato Felix">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECÇÃO 4: EXPERIÊNCIA -->
+    <section id="experiencia" class="page-section">
+        <div class="timeline-centered">
+            <h2 class="section-title">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <span><span style="color: var(--text-primary);">~/</span>experiencia</span>
+            </h2>
+            
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-card fade-up">
+                        <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <span>JUL 2025 - FEV 2026</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Tempo Parcial]</span>
+                        </div>
+                        <h3 style="margin-bottom: 5px;">Colaborador de Restaurante</h3>
+                        <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Restaurante Gran Sabana</p>
+                        
+                        <ul>
+                            <li>Gestão de armazém, limpeza e atendimento direto ao cliente.</li>
+                            <li>Desenvolvimento de forte adaptabilidade em situações de elevada pressão.</li>
+                            <li>Interação simpática e atenta, garantindo a satisfação do cliente.</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tag tag-blue">atendimento_ao_cliente</span>
+                            <span class="tag tag-orange">trabalho_sob_pressão</span>
+                            <span class="tag tag-green">gestão_do_tempo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card fade-up" style="animation-delay: 0.2s;">
+                        <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <span>09 ABR 2025 - 16 ABR 2025</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Tempo Inteiro]</span>
+                        </div>
+                        <h3 style="margin-bottom: 5px;">Guia de Rebel Island</h3>
+                        <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Rebel Island 2025</p>
+                                
+                        <ul>
+                            <li>Liderança de grupos de estudantes em viagens e estadias.</li>
+                            <li>Coordenação de atividades de segurança, bem-estar e entretenimento.</li>
+                            <li>Comunicação proativa e trabalho em equipa para uma experiência positiva.</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tag tag-blue">liderança_de_grupos</span>
+                            <span class="tag tag-green">trabalho_em_equipa</span>
+                            <span class="tag tag-orange">proatividade</span>
+                        </div>
+                        <div class="exp-images">
+                            <img src="imagens/rebel 1.png" alt="Rebel Island">
+                            <img src="imagens/rebel 2.jpg" alt="Rebel Island">
+                            <img src="imagens/rebel 3.jpg" alt="Rebel Island">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card fade-up" style="animation-delay: 0.4s;">
+                        <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <span>SET 2023 - MAI 2025</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Atividades Isoladas]</span>
+                        </div>
+                        <h3 style="margin-bottom: 5px;">Guia de Eventos</h3>
+                        <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Vários organizadores</p>
+                        
+                        <ul>
+                            <li>Logística e coordenação operacional em grandes eventos internacionais e universitários.</li>
+                            <li>Gestão centralizada de horários e recursos essenciais para o funcionamento.</li>
+                            <li>Controlo de detalhes e trabalho sob pressão para garantir o sucesso dos eventos.</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tag tag-orange">gestão_de_conflitos</span>
+                            <span class="tag tag-blue">logística</span>
+                            <span class="tag tag-green">coordenação_entre_equipas</span>
+                        </div>
+                        <div class="exp-images">
+                            <img src="imagens/eventos 1.jpg" alt="Eventos">
+                            <img src="imagens/eventos 2.jpg" alt="Eventos">
+                            <img src="imagens/eventos 3.jpg" alt="Eventos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECÇÃO 5: PROJETOS -->
+    <section id="projetos" class="page-section">
+        <h2 class="section-title">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span><span style="color: var(--text-primary);">~/</span>projetos</span>
+        </h2>
         
         <div class="projects-grid">
-
-            <div class="project-card fade-up" style="animation-delay: 0.6s;">
+            <div class="project-card fade-up">
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -266,14 +335,10 @@
                             <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Tópicos Avançados BD</span>
                         </div>
                     </div>
-                    <p class="description" style="text-align: justify; margin-top: 10px;">
-                        Aplicação web desenvolvida com backend em Java para processamento de dados meteorológicos. Utiliza uma base de dados NoSQL (MongoDB) para armazenar grandes volumes de informação climática, apresentando os resultados através de mapas interativos e consultas geoespaciais na interface de utilizador. 
-                    </p>
+                    <p class="description">Aplicação web desenvolvida com backend em Java para processamento de dados meteorológicos. Utiliza uma base de dados NoSQL (MongoDB) para armazenar grandes volumes de informação climática, apresentando os resultados através de mapas interativos e consultas geoespaciais na interface de utilizador.</p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[java]</span>
-                    <span class="code-tag">[mongodb]</span>
-                    <span class="code-tag">[javascript]</span>
+                    <span class="code-tag">[java]</span> <span class="code-tag">[mongodb]</span> <span class="code-tag">[javascript]</span>
                 </div>
             </div>
 
@@ -292,18 +357,14 @@
                             <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Desenvolvimento de Apps</span>
                         </div>
                     </div>
-                    <p class="description" style="text-align: justify; margin-top: 10px;">
-                        Projeto em grupo. O objetivo principal do sistema é automatizar e simplificar o processo de gestão de eventos do CAA (Centro de Artes de Águeda), permitindo o controlo centralizado de reservas e horários.
-                    </p>
+                    <p class="description">Projeto em grupo. O objetivo principal do sistema é automatizar e simplificar o processo de gestão de eventos do CAA (Centro de Artes de Águeda), permitindo o controlo centralizado de reservas e horários.</p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[java]</span>
-                    <span class="code-tag">[poo]</span>
-                    <span class="code-tag">[sql]</span>
+                    <span class="code-tag">[java]</span> <span class="code-tag">[poo]</span> <span class="code-tag">[sql]</span>
                 </div>
             </div>
         
-            <div class="project-card fade-up" style="animation-delay: 0.2s;">
+            <div class="project-card fade-up">
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -318,18 +379,14 @@
                             <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Laboratórios de Informática</span>
                         </div>
                     </div>
-                    <p class="description" style="text-align: justify; margin-top: 10px;">
-                        Projeto em grupo. O Trust-Fund é uma plataforma web de gestão financeira pessoal desenvolvida para a cadeira de Laboratórios de Informática. Permite aos utilizadores registar transações e consultar o saldo histórico.
-                    </p>
+                    <p class="description">Projeto em grupo. O Trust-Fund é uma plataforma web de gestão financeira pessoal desenvolvida para a cadeira de Laboratórios de Informática. Permite aos utilizadores registar transações e consultar o saldo histórico.</p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[php]</span>
-                    <span class="code-tag">[css]</span>
-                    <span class="code-tag">[javascript]</span>
+                    <span class="code-tag">[php]</span> <span class="code-tag">[css]</span> <span class="code-tag">[javascript]</span>
                 </div>
             </div>
             
-            <div class="project-card fade-up" style="animation-delay: 0.4s;">
+            <div class="project-card fade-up">
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
@@ -344,23 +401,39 @@
                             <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Sistemas Operativos</span>
                         </div>
                     </div>
-                    <p class="description" style="text-align: justify; margin-top: 10px;">
-                        O principal objetivo do projeto foi aplicar conceitos de processamento concorrente, memória partilhada e sincronização de processos em Python, simulando o comportamento de pacientes e médicos num ambiente hospitalar.
-                    </p>
+                    <p class="description">O principal objetivo do projeto foi aplicar conceitos de processamento concorrente, memória partilhada e sincronização de processos em Python, simulando o comportamento de pacientes e médicos num ambiente hospitalar.</p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[python]</span>
-                    <span class="code-tag">[processamento_concorrente]</span>
+                    <span class="code-tag">[python]</span> <span class="code-tag">[processamento_concorrente]</span>
                 </div>
             </div>
         </div>
 
-        <div class="projects-footer fade-up" style="animation-delay: 0.8s;">
+        <div class="projects-footer fade-up">
             <span class="terminal-cursor" style="color: var(--accent-green); font-weight: bold;">>_</span> 
             <span>cat ~/mais_projetos.txt <span style="color: var(--accent-color); margin: 0 5px;">-></span> Consulte o meu <a href="https://github.com/SpringCattt" target="_blank" class="link-destaque">perfil de Github</a> para uma lista completa de projetos académicos e pessoais.</span>
         </div>
-        
     </section>
+
+    <!-- MODAIS E TICKER GLOBAIS -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content animate-pop">
+            <span class="close-btn" id="closeVideoBtn">&times;</span>
+            <video id="myVideo" controls>
+                <source src="video_cv.mp4" type="video/mp4">
+                O teu browser não suporta a tag de vídeo.
+            </video>
+        </div>
+    </div>
+
+    <div id="bioModal" class="modal" onclick="if(event.target == this) closeBioModal()">
+        <div class="modal-content animate-pop" style="max-width: 550px;">
+            <span class="close-btn" onclick="closeBioModal()">&times;</span>
+            <img src="imagens/unnamed.jpg" alt="Foto de Juan Gonsalves">
+            <h2 style="color: var(--accent-color); margin-bottom: 1rem;">who_is_juan.sh</h2>
+            <p id="bio-text" style="text-align: justify; text-align-last: center; color: var(--text-primary); font-size: 0.95rem; min-height: 120px; margin: 0 auto;"></p>
+        </div>
+    </div>
 
     <div class="ticker-wrap">
         <div class="ticker-move">
@@ -378,12 +451,6 @@
             <div class="ticker-item"><span class="accent">>_</span> CAFEINA_LEVEL: <span style="color: #c9d1d9;">99%</span></div>
         </div>
     </div>
-    
-    <footer style="padding-bottom: 80px;">
-        <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.85rem;">
-            Desenvolvido aplicando as regras de usabilidade (AEE II) © 2026
-        </p>
-    </footer>
 
     <script src="script.js"></script>
 </body>

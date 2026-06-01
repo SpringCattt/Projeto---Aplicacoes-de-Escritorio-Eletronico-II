@@ -141,3 +141,27 @@ window.onclick = function(event) {
     if (event.target == videoModal) { videoModal.style.display = "none"; video.pause(); }
     if (event.target == bioModal) { closeBioModal(); }
 }
+
+// ==========================================
+// NAVEGAÇÃO SPA (SINGLE PAGE APPLICATION)
+// ==========================================
+const navLinks = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.page-section');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault(); // Evita o scroll padrão
+        const targetId = link.getAttribute('href').substring(1);
+        
+        // Remove a classe ativa de todas as secções e botões
+        sections.forEach(sec => sec.classList.remove('active'));
+        navLinks.forEach(nav => nav.classList.remove('active'));
+        
+        // Adiciona a classe ativa à secção correspondente
+        document.getElementById(targetId).classList.add('active');
+        link.classList.add('active');
+        
+        // Pequeno scroll para o topo suave
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
