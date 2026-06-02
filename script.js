@@ -142,15 +142,17 @@ if (myVideo && !myVideo.paused) {
 if (openVideoBtn && videoModal && closeVideoBtn && myVideo) {
     openVideoBtn.addEventListener('click', () => {
         videoModal.style.display = "flex";
-        if(matrixActive && canvas) canvas.style.display = "none";
+        if(canvas) canvas.style.display = "none"; // Eliminado matrixActive
         myVideo.play();
     });
 
     const closeModal = () => {
         videoModal.style.display = "none";
-        if(matrixActive && canvas) canvas.style.display = "block";
-        myVideo.pause();
-        myVideo.currentTime = 0; 
+        if(canvas) canvas.style.display = "block"; // Eliminado matrixActive
+        if (!myVideo.paused) {
+            myVideo.pause();
+            myVideo.currentTime = 0; 
+        }
     };
     closeVideoBtn.addEventListener('click', closeModal);
     
@@ -243,7 +245,6 @@ let achievTimeout;
 
 if (downloadCVBtn && xboxAchievement) {
     downloadCVBtn.addEventListener('click', () => {
-        playSound(achievSound, 0.5);
         xboxAchievement.classList.add('show');
         clearTimeout(achievTimeout);
         achievTimeout = setTimeout(() => xboxAchievement.classList.remove('show'), 4000);
@@ -289,7 +290,6 @@ window.addEventListener('keydown', (e) => {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {
             document.body.classList.toggle('konami-mode');
-            playSound(achievSound, 1);
             konamiIndex = 0;
         }
     } else {
