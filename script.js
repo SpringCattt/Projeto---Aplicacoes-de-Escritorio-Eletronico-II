@@ -1,37 +1,4 @@
 // ==========================================
-// GLOBALS & AUDIO CONTROL
-// ==========================================
-let isMuted = true;
-const soundBtn = document.getElementById('soundToggle');
-
-// Audios
-const mechSound = document.getElementById('mechSound');
-const achievSound = document.getElementById('achievSound');
-const meowSound = document.getElementById('meowSound');
-const revSound = document.getElementById('revSound');
-
-// Función segura para reproducir sonido
-function playSound(audioElement, vol = 0.5) {
-    if (!isMuted && audioElement) {
-        audioElement.currentTime = 0;
-        audioElement.volume = vol;
-        audioElement.play().catch(e => console.log("Som bloqueado pelo navegador até interação do utilizador:", e));
-    }
-}
-
-if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-        isMuted = !isMuted;
-        soundBtn.textContent = isMuted ? '🔇' : '🔊';
-    });
-}
-
-// Som de teclado mecânico em botões
-document.querySelectorAll('a, button, .nav-btn, .profile-img-placeholder').forEach(el => {
-    el.addEventListener('click', () => playSound(mechSound, 0.4));
-});
-
-// ==========================================
 // 1. Efeito Linterna: Matrix Dinâmico Base
 // ==========================================
 const canvas = document.getElementById('matrix-canvas');
