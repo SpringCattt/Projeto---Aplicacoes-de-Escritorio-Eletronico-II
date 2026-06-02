@@ -465,6 +465,103 @@ video { width: 100%; border-radius: 4px; outline: none; }
 .achiev-text p { color: #aaa; margin: 0; font-family: var(--font-main); font-size: 0.85rem; }
 
 /* ========================================== */
+/* POPUP DEL VIDEO (MODAL)                    */
+/* ========================================== */
+#videoModal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); 
+}
+
+#videoModal .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    background: var(--surface-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* El botón de la 'X' para cerrar - AHORA OCULTO */
+.close-modal {
+    display: none; /* Esto oculta la X */
+    position: absolute;
+    top: -10px;
+    right: 0px;
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.video-container iframe, 
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========================================== */
+/* MEDIA QUERIES (RESPONSIVO)                 */
+/* ========================================== */
+@media (max-width: 900px) {
+    .sobre-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 1rem; font-size: 0.85rem; flex-wrap: wrap; justify-content: center;}
+    .nav-controls { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: 10px; width: 100%; justify-content: center;}
+    nav { padding: 0.8rem 0; }
+    #inicio { padding-top: 120px; } 
+    .exp-images, .hobby-images { grid-template-columns: 1fr; }
+    
+    #consoleForm input:focus, #consoleForm textarea:focus {
+        border-color: var(--accent-color) !important;
+        box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+    }
+
+    #cancelConsoleForm:hover {
+        background-color: rgba(255, 85, 85, 0.1) !important;
+        box-shadow: 0 0 15px rgba(255, 85, 85, 0.4) !important;
+        transform: scale(1.05);
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    .terminal-cursor { 
+        animation: blink 1s step-end infinite; 
+    }
+}
+
+/* ========================================== */
 /* MEDIA QUERIES (RESPONSIVO)                 */
 /* ========================================== */
 @media (max-width: 900px) {
@@ -474,10 +571,7 @@ video { width: 100%; border-radius: 4px; outline: none; }
     nav { padding: 0.8rem 0; }
     #inicio { padding-top: 120px; } /* Más espacio para la navbar expandida */
     .exp-images, .hobby-images { grid-template-columns: 1fr; }
-    #videoModal { backdrop-filter: none !important; background-color: rgba(0, 0, 0, 0.98) !important; }
-    #videoModal .modal-content { box-shadow: none !important; border: none !important; background-color: transparent !important; }
 }
-
 /* ========================================== */
 /* FORMULARIO DE CONTACTO EN TERMINAL         */
 /* ========================================== */

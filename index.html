@@ -483,16 +483,15 @@
             </div>
     </section>
 
-    <div id="videoModal" class="modal">
-        <div class="modal-content animate-pop">
-            <span class="close-btn" id="closeVideoBtn">&times;</span>
-            <video id="myVideo" controls>
-                <source src="video_cv.mp4" type="video/mp4">
-                O teu browser não suporta a tag de vídeo.
-            </video>
-        </div>
+    <div id="videoModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeVideo">&times;</span>
+        <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/hV7Vmuc2fnU" allowfullscreen></iframe>        
     </div>
-
+    </div>
+</div>
+ 
     <div id="bioModal" class="modal" onclick="if(event.target == this) closeBioModal()">
         <div class="modal-content animate-pop" style="max-width: 550px;">
             <span class="close-btn" onclick="closeBioModal()">&times;</span>

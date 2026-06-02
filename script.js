@@ -59,6 +59,7 @@ if (canvas && ctx) {
     requestAnimationFrame(drawMatrix);
     window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
 }
+
 // ==========================================
 // 2. Lógicas de Scroll: Progresso e Back to Top
 // ==========================================
@@ -106,12 +107,11 @@ function getCurrentLang() {
 
 function type() {
     const lang = getCurrentLang();
-    const texts = i18nTypewriter[lang]; // Carga las frases del idioma actual
+    const texts = i18nTypewriter[lang];
 
     if (count >= texts.length) { count = 0; }
     currentText = texts[count];
     
-    // Seguro por si se cambia de idioma a mitad de palabra
     if (!currentText) { count = 0; currentText = texts[0]; }
 
     if (isDeleting) { letter = currentText.slice(0, --index); } else { letter = currentText.slice(0, ++index); }
@@ -130,37 +130,44 @@ function type() {
 document.addEventListener("DOMContentLoaded", function() { typewriterTimeout = setTimeout(type, 1000); });
 
 // ==========================================
-// 4. Controlo do Modal de Vídeo & Bio
+// 4. MODALES: Video & Biografía
 // ==========================================
-const openVideoBtn = document.getElementById('openVideoBtn');
+
+// --- 4.1 Modal de Video ---
 const videoModal = document.getElementById('videoModal');
-const closeVideoBtn = document.getElementById('closeVideoBtn');
-const myVideo = document.getElementById('myVideo');
-if (myVideo && !myVideo.paused) {
-    myVideo.pause();
-}
-if (openVideoBtn && videoModal && closeVideoBtn && myVideo) {
-    openVideoBtn.addEventListener('click', () => {
+// ¡AQUÍ ESTABA EL DETALLE! Le faltaba el "Btn" al final del ID
+const openVideoBtn = document.getElementById('openVideoBtn'); 
+const closeVideoBtn = document.getElementById('closeVideo'); 
+
+if (openVideoBtn && videoModal) {
+    openVideoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         videoModal.style.display = "flex";
-        if(canvas) canvas.style.display = "none"; // Eliminado matrixActive
-        myVideo.play();
+        if(canvas) canvas.style.display = "none"; // Oculta Matrix
     });
 
-    const closeModal = () => {
+    const closeVideo = () => {
         videoModal.style.display = "none";
-        if(canvas) canvas.style.display = "block"; // Eliminado matrixActive
-        if (!myVideo.paused) {
-            myVideo.pause();
-            myVideo.currentTime = 0; 
+        if(canvas) canvas.style.display = "block"; // Reactiva Matrix
+        
+        // TRUCO: Recargar el iframe para que deje de sonar el video
+        const iframe = videoModal.querySelector('iframe');
+        if (iframe) {
+            let iframeSrc = iframe.src;
+            iframe.src = iframeSrc; 
         }
     };
-    closeVideoBtn.addEventListener('click', closeModal);
-    
+
+    if (closeVideoBtn) {
+        closeVideoBtn.addEventListener('click', closeVideo);
+    }
+
+    // Cerrar si hacen clic afuera del video
     window.addEventListener('click', (event) => {
-        if (event.target === videoModal) closeModal();
+        if (event.target === videoModal) closeVideo();
     });
 }
-
+// --- 4.2 Modal de Biografía ---
 const i18nBio = {
     pt: "Futuro engenheiro de software focado em aprender, construir e melhorar todos os dias...",
     es: "Futuro ingeniero de software enfocado en aprender, construir y mejorar cada día...",
@@ -172,7 +179,7 @@ const bioTextElement = document.getElementById("bio-text");
 let bioTyping = false; let bioCharIndex = 0;
 
 function typeBioText() {
-    const lang = getCurrentLang(); // Usamos la misma función de arriba
+    const lang = getCurrentLang(); 
     const currentBioString = i18nBio[lang];
 
     if (bioCharIndex < currentBioString.length && bioTyping && bioTextElement) {
@@ -182,25 +189,26 @@ function typeBioText() {
     }
 }
 
-function openBioModal() {
+// Exponemos las funciones de la bio al objeto window por si las llamas desde el HTML (onclick="openBioModal()")
+window.openBioModal = function() {
     if (bioModal) {
         bioModal.style.display = "flex";
         if (!bioTyping) {
             bioTyping = true; bioCharIndex = 0; if (bioTextElement) bioTextElement.innerHTML = ""; typeBioText();
         }
     }
-}
+};
 
-function closeBioModal() {
+window.closeBioModal = function() {
     if (bioModal) {
         bioModal.style.display = "none";
         bioTyping = false; 
     }
-}
+};
 
 if (bioModal) {
     window.addEventListener('click', (event) => {
-        if (event.target === bioModal) closeBioModal();
+        if (event.target === bioModal) window.closeBioModal();
     });
 }
 
@@ -224,7 +232,6 @@ navLinks.forEach(link => {
             targetSec.classList.add('active');
             link.classList.add('active');
             
-            // Si vamos a Inicio, ocultamos la barra. Si no, la mostramos.
             if (targetId === 'inicio') {
                 if (scrollBar) scrollBar.style.display = 'none';
             } else {
@@ -254,8 +261,6 @@ if (downloadCVBtn && xboxAchievement) {
 // ==========================================
 // 7. EASTER EGGS (SUDO, KONAMI)
 // ==========================================
-
-// Sudo Mode (Triple click profile pic)
 const profileImg = document.getElementById('profileImg');
 let clickCount = 0; let clickTimer;
 if (profileImg) {
@@ -267,10 +272,8 @@ if (profileImg) {
             const ticker = document.getElementById('ticker-content');
             if(ticker) {
                 if(document.body.classList.contains('sudo-mode')) {
-                    // Repetimos 10 veces para asegurar que cubre el 100% de la pantalla y el -50% del bucle
                     ticker.innerHTML = '<div class="ticker-item"><span class="accent">>></span> SYSTEM.OVERRIDE... ROOT ACCESS GRANTED</div>'.repeat(10);
                 } else {
-                    // Restauramos los dos grupos exactos
                     const baseTicker = '<div class="ticker-item"><span class="accent">>_</span> SYSTEM.STATUS: <span style="color: #c9d1d9;">ONLINE</span></div><div class="ticker-item"><span class="accent">>_</span> LEARNING.CURVE: <span style="color: #c9d1d9;">EXPONENTIAL</span></div><div class="ticker-item"><span class="accent">>_</span> BUSCANDO_NOVA_OPORTUNIDADE</div><div class="ticker-item"><span class="accent">>_</span> GITHUB.COMMITS: <span style="color: #c9d1d9;">++</span></div><div class="ticker-item"><span class="accent">>_</span> DEPLOYING_NEW_MODULES...</div><div class="ticker-item"><span class="accent">>_</span> CAFEINA_LEVEL: <span style="color: #c9d1d9;">99%</span></div>';
                     ticker.innerHTML = baseTicker + baseTicker;
                 }
@@ -282,7 +285,6 @@ if (profileImg) {
     });
 }
 
-// Konami Code
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 let konamiIndex = 0;
 window.addEventListener('keydown', (e) => {
@@ -297,7 +299,6 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-
 // ==========================================
 // 8. INTERACTIVE TERMINAL (Multi-idioma + Form)
 // ==========================================
@@ -306,14 +307,12 @@ const termOutput = document.getElementById('term-output');
 let currentTermLang = document.querySelector('.lang-btn.active')?.getAttribute('data-lang') || 'pt';
 
 if (termInput && termOutput) {
-    // 1. Respuestas de la consola actualizadas
     const termResponses = {
         pt: { help: "Comandos disponíveis:\n - help\n - cat skills.txt\n - clear\n - sudo hire juan\n", notFound: "command not found", hire: "[+] Excelente escolha. A preparar módulo de contacto seguro...\n", skills: ">> Skills: Java, Python, SQL, Git, Linux, Trabalho sob pressão, Adaptabilidade.\n" },
         es: { help: "Comandos disponibles:\n - help\n - cat skills.txt\n - clear\n - sudo hire juan\n", notFound: "command not found", hire: "[+] Excelente elección. Preparando módulo de contacto seguro...\n", skills: ">> Skills: Java, Python, SQL, Git, Linux, Trabajo bajo presión, Adaptabilidad.\n" },
         en: { help: "Available commands:\n - help\n - cat skills.txt\n - clear\n - sudo hire juan\n", notFound: "command not found", hire: "[+] Excellent choice. Preparing secure contact module...\n", skills: ">> Skills: Java, Python, SQL, Git, Linux, Work under pressure, Adaptability.\n" }
     };
 
-    // Escuchar cambios de idioma para la terminal
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             currentTermLang = e.target.getAttribute('data-lang');
@@ -336,13 +335,11 @@ if (termInput && termOutput) {
             } else if (cmd.startsWith('sudo hire')) { 
                 termOutput.innerHTML += `<span style="color: #00e676;">${termResponses[currentTermLang].hire}</span>\n`;
                 
-                // Mostrar formulario en lugar de abrir email
                 setTimeout(() => {
                     const formContainer = document.getElementById('terminal-contact-form');
                     if (formContainer) {
                         formContainer.style.display = "block";
                         document.getElementById('senderEmail').focus();
-                        // Hacemos scroll suave hacia abajo para ver el formulario completo
                         document.getElementById('interactive-terminal').scrollIntoView({ behavior: 'smooth', block: 'end' });
                     }
                 }, 600);
@@ -355,17 +352,14 @@ if (termInput && termOutput) {
         }
     });
 
-    // 2. Lógica de Envío y Cancelación del Formulario
     const consoleForm = document.getElementById('consoleForm');
     const cancelConsoleForm = document.getElementById('cancelConsoleForm');
     const formContainer = document.getElementById('terminal-contact-form');
 
     if (consoleForm && formContainer) {
-        // Enviar Formulario
         consoleForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita recargar la página
+            e.preventDefault(); 
             
-            // Textos de éxito
             const successMsg = {
                 pt: "\n[+] Pacote TCP [100% transmitido]. Mensagem entregue ao servidor com sucesso!\n",
                 es: "\n[+] Paquete TCP [100% transmitido]. ¡Mensaje entregado al servidor con éxito!\n",
@@ -375,13 +369,11 @@ if (termInput && termOutput) {
             termOutput.innerHTML += `<span style="color: var(--accent-color);">${successMsg[currentTermLang]}</span>`;
             termOutput.scrollTop = termOutput.scrollHeight;
             
-            // Limpiar y ocultar
             formContainer.style.display = "none";
             consoleForm.reset();
             termInput.focus();
         });
 
-        // Cancelar Formulario
         if(cancelConsoleForm) {
             cancelConsoleForm.addEventListener('click', () => {
                 const cancelMsg = {
@@ -398,6 +390,7 @@ if (termInput && termOutput) {
         }
     }
 }  
+
 // ==========================================
 // 9. MOBILE OPTIMIZATION (Touchstart Hover)
 // ==========================================
@@ -424,7 +417,6 @@ langBtns.forEach(btn => {
         btn.classList.add('active');
         const lang = btn.getAttribute('data-lang');
         
-        // 1. Traduce todos los elementos estándar
         document.querySelectorAll('[data-' + lang + ']').forEach(el => {
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.placeholder = el.getAttribute('data-' + lang);
@@ -433,7 +425,6 @@ langBtns.forEach(btn => {
             }
         });
 
-        // 2. Cambia el texto del título estático (tu nombre/subtítulo)
         const typeTextElement = document.getElementById("type-text");
         if (typeTextElement) {
             if (lang === 'pt') {
@@ -445,7 +436,6 @@ langBtns.forEach(btn => {
             }
         }
 
-        // 3. 🔥 Traducir los popups (tooltips) de los botones 🔥
         const soundBtnEl = document.getElementById('soundToggle');
         if (soundBtnEl) {
             if (lang === 'pt') soundBtnEl.title = "Ativar/Desativar som";
@@ -468,4 +458,4 @@ langBtns.forEach(btn => {
 console.log(
     "%c¡Hola! Si estás inspeccionando esto, es porque te gusta ver cómo funcionan las cosas por debajo. Escribe 'sudo hire juan' en la terminal de la página o háblame a: juancarlosgds@gmail.com", 
     "color: #00e676; font-size: 1.2rem; font-weight: bold; background: #0d1117; padding: 10px; border-radius: 5px; border: 1px solid #00e676;"
-); 
+);
