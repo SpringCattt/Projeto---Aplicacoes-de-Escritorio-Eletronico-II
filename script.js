@@ -169,7 +169,9 @@ const openVideoBtn = document.getElementById('openVideoBtn');
 const videoModal = document.getElementById('videoModal');
 const closeVideoBtn = document.getElementById('closeVideoBtn');
 const myVideo = document.getElementById('myVideo');
-
+if (myVideo && !myVideo.paused) {
+    myVideo.pause();
+}
 if (openVideoBtn && videoModal && closeVideoBtn && myVideo) {
     openVideoBtn.addEventListener('click', () => {
         videoModal.style.display = "flex";
