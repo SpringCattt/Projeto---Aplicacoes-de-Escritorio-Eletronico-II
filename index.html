@@ -3,38 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Engenharia Informática</title>
+    <title>Juan Gonsalves | Software Engineer</title>
+    <link rel="icon" type="image/x-icon" href="imagens/tu_foto.ico">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div id="scroll-progress"></div>
+
     <canvas id="matrix-canvas"></canvas>
 
     <nav>
+    <div class="nav-container">
         <ul class="nav-links">
-            <li><a href="#inicio" class="nav-btn active">Início</a></li>
-            <li><a href="#sobre" class="nav-btn">Sobre</a></li>
-            <li><a href="#hobbies" class="nav-btn">Hobbies</a></li>
-            <li><a href="#experiencia" class="nav-btn">Experiência</a></li>
-            <li><a href="#projetos" class="nav-btn">Projetos</a></li>
+            <li><a href="#inicio" class="nav-btn active" data-pt="Início" data-es="Inicio" data-en="Home">Início</a></li>
+            <li><a href="#sobre" class="nav-btn" data-pt="Sobre" data-es="Sobre mí" data-en="About">Sobre</a></li>
+            <li><a href="#hobbies" class="nav-btn" data-pt="Hobbies" data-es="Hobbies" data-en="Hobbies">Hobbies</a></li>
+            <li><a href="#experiencia" class="nav-btn" data-pt="Experiência" data-es="Experiencia" data-en="Experience">Experiência</a></li>
+            <li><a href="#projetos" class="nav-btn" data-pt="Projetos" data-es="Proyectos" data-en="Projects">Projetos</a></li>
         </ul>
-    </nav>
+        
+        <div class="nav-controls">
+                <button id="soundToggle" class="control-btn" title="Activar/Desactivar sonido">🔇</button>
+                <div class="lang-selector">
+                <span class="lang-btn active" data-lang="pt">PT</span>|
+                <span class="lang-btn" data-lang="es">ES</span>|
+                <span class="lang-btn" data-lang="en">EN</span>
+            </div>
+        </div>
+    </div>
+</nav>
 
-    <!-- SECÇÃO 1: INÍCIO -->
     <section id="inicio" class="page-section active">
-        <div class="profile-img-placeholder glow-effect" style="cursor: pointer; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="openBioModal()">
+        <div class="profile-img-placeholder glow-effect" id="profileImg" onclick="openBioModal()">
             <img src="imagens/unnamed.jpg" alt="Foto de Juan Gonsalves">
         </div>
-        <h1>Olá, eu sou o Juan Gonsalves</h1>
+        
+        <h1 data-pt="Olá, eu sou o Juan Gonsalves" data-es="Hola, soy Juan Gonsalves" data-en="Hello, I'm Juan Gonsalves">Olá, eu sou o Juan Gonsalves</h1>
+
         <div class="typewriter"><span id="type-text"></span><span class="cursor">_</span></div>
-        <p style="max-width: 750px; text-align: center; margin: 0 auto 1.5rem auto; color: var(--text-primary);">
+        <p style="max-width: 750px; text-align: center; margin: 0 auto; color: var(--text-primary);" data-pt="Estudante de Engenharia Informática. Apaixonado por tecnologia e resolução de problemas, em busca da minha primeira oportunidade em desenvolvimento de software." data-es="Estudiante de Ingeniería Informática. Apasionado por la tecnología y la resolución de problemas, en busca de mi primera oportunidad en desarrollo de software." data-en="Computer Engineering student. Passionate about technology and problem solving, seeking my first opportunity in software development.">
             Estudante de Engenharia Informática. Apaixonado por tecnologia e resolução de problemas, em busca da minha primeira oportunidade em desenvolvimento de software.
         </p>
-        
+
         <div class="contact-container">
             <span class="contact-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Estarreja, Aveiro - PT
+                <span data-pt="Estarreja, Aveiro - PT" data-es="Estarreja, Aveiro - PT" data-en="Estarreja, Aveiro - PT">Estarreja, Aveiro - PT</span>
             </span>
             <span class="contact-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -50,207 +65,226 @@
             </a>
         </div>
 
-        <button class="btn-terminal" id="openVideoBtn">./executar_video.sh</button>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap;">
+            <a href="cv.pdf" download="CV_Juan_Gonsalves.pdf" class="btn-terminal cv-btn" id="downloadCVBtn" data-pt="[Descarregar_CV.pdf]" data-es="[Descargar_CV.pdf]" data-en="[Download_CV.pdf]">
+                [Descargar_CV.pdf]
+            </a>
+            <button class="btn-terminal" id="openVideoBtn" style="margin-top: 0;" data-pt="./executar_video.sh" data-es="./ejecutar_video.sh" data-en="./run_video.sh">./executar_video.sh</button>
+        </div>
     </section>
 
-    <!-- SECÇÃO 2: SOBRE -->
     <section id="sobre" class="page-section">
         <h2 class="section-title">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <span><span style="color: var(--text-primary);">~/</span>who_am_i</span>
         </h2>
         
-        <p class="who-am-i-text">
+        <p class="who-am-i-text" data-pt="Sou um estudante de Engenharia Informática com background em serviço ao cliente e gestão de eventos. Habituado a ambientes dinâmicos e de alta pressão, trago essa mesma capacidade de adaptação e resolução rápida de problemas para o mundo do código. À procura da minha primeira oportunidade em desenvolvimento de software." data-es="Soy estudiante de Ingeniería Informática con experiencia en servicio al cliente y gestión de eventos. Acostumbrado a entornos dinámicos y de alta presión, aporto esa misma capacidad de adaptación y resolución rápida de problemas al mundo del código. Buscando mi primera oportunidad en desarrollo de software." data-en="I am a Computer Engineering student with a background in customer service and event management. Accustomed to dynamic, high-pressure environments, I bring that same adaptability and rapid problem-solving to the world of code. Seeking my first software development opportunity.">
             Sou um estudante de Engenharia Informática com background em serviço ao cliente e gestão de eventos. Habituado a ambientes dinâmicos e de alta pressão, trago essa mesma capacidade de adaptação e resolução rápida de problemas para o mundo do código. À procura da minha primeira oportunidade em desenvolvimento de software.
         </p>
 
         <div class="sobre-grid">
             <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
-                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>educação
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="dados_pessoais" data-es="datos_personales" data-en="personal_info">dados_pessoais</span>
+                </h3>
+                <div class="tech-list">
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Idade]:" data-es="[Edad]:" data-en="[Age]:">[Idade]:</strong> <span data-pt="20 anos (14/02/2006)" data-es="20 años (14/02/2006)" data-en="20 years (02/14/2006)">20 anos (14/02/2006)</span></span>
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Nacionalidade]:" data-es="[Nacionalidad]:" data-en="[Nationality]:">[Nacionalidade]:</strong> <span data-pt="Portuguesa / Venezuelana / Americana" data-es="Portuguesa / Venezolana / Americana" data-en="Portuguese / Venezuelan / American">Portuguesa / Venezuelana / Americana</span></span>
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Residência]:" data-es="[Residencia]:" data-en="[Location]:">[Residência]:</strong> <span data-pt="Estarreja, Aveiro" data-es="Estarreja, Aveiro" data-en="Estarreja, Aveiro">Estarreja, Aveiro</span></span>
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Disponibilidade]:" data-es="[Disponibilidad]:" data-en="[Availability]:">[Disponibilidade]:</strong> <span data-pt="A partir de Julho (Part-time)" data-es="A partir de Julio (Part-time)" data-en="From July (Part-time)">A partir de Julho (Part-time)</span></span>
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Modalidade]:" data-es="[Modalidad]:" data-en="[Modality]:">[Modalidade]:</strong> <span data-pt="Presencial / Híbrido" data-es="Presencial / Híbrido" data-en="On-site / Hybrid">Presencial / Híbrido</span></span>
+                    <span class="tech-item" style="color: var(--text-primary);"><strong style="color: var(--accent-green);" data-pt="[Carta_de_Condução]:" data-es="[Licencia_Conducir]:" data-en="[Driver_License]:">[Carta_de_Condução]:</strong> <span data-pt="Categorias A2 e B" data-es="Categorías A2 y B" data-en="Categories A2 and B">Categorias A2 e B</span></span>
+                </div>
+            </div>
+
+            <div class="terminal-card fade-up">
+                <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="educação" data-es="educación" data-en="education">educação</span>
                 </h3>
                 <div class="card-info">
                     <h4>ESTGA - Universidade de Aveiro</h4>
-                    <a href="https://www.ua.pt/pt/curso/1732" target="_blank" class="text-blue hover-glow" style="display: block; text-decoration: none;">Licenciatura em Engenharia Informática Aplicada</a>
-                    <p class="text-green">2024 - Presente</p>       
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-color); line-height: 1.5;">
+                    <a href="https://www.ua.pt/pt/curso/1732" target="_blank" class="text-blue hover-glow" style="display: block; text-decoration: none;" data-pt="Licenciatura em Engenharia Informática Aplicada" data-es="Grado en Ingeniería Informática Aplicada" data-en="Bachelor in Applied Computer Engineering">Licenciatura em Engenharia Informática Aplicada</a>
+                    <p class="text-green" data-pt="2024 - Presente" data-es="2024 - Presente" data-en="2024 - Present">2024 - Presente</p>       
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 12px; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border-color); line-height: 1.5;" data-pt="Foco em programação, bases de dados, arquiteturas de software e usabilidade." data-es="Enfoque en programación, bases de datos, arquitecturas de software y usabilidad." data-en="Focus on programming, databases, software architectures, and usability.">
                         Foco em programação, bases de dados, arquiteturas de software e usabilidade.
                     </p>
 
                     <h4 style="margin-top: 1.5rem;">Escola Secundária de Estarreja</h4>
-                    <p class="text-blue" style="margin-top: 5px; font-size: 0.85rem;">Ciências Socioeconómicas</p>
-                    <p class="text-green" style="margin-top: 5px;">2021 - 2024</p>
-                    <p style="color: var(--text-secondary); font-family: var(--font-code); font-size: 0.85rem; margin-top: 5px;">Média: 17,1</p>
+                    <p class="text-blue" style="margin-top: 5px; font-size: 0.85rem;" data-pt="Ciências Socioeconómicas" data-es="Ciencias Socioeconómicas" data-en="Socio-economic Sciences">Ciências Socioeconómicas</p>
+                    <p class="text-green" data-pt="2021 - 2024" data-es="2021 - 2024" data-en="2021 - 2024">2021 - 2024</p>
+                    <p style="color: var(--text-secondary); font-family: var(--font-code); font-size: 0.85rem; margin-top: 5px;" data-pt="Média: 17,1" data-es="Media: 17,1" data-en="GPA: 17.1">Média: 17,1</p>
                 </div>
             </div>
 
             <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
-                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>competências_técnicas
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="competências_técnicas" data-es="habilidades_técnicas" data-en="technical_skills">competências_técnicas</span>
                 </h3>
                 <div class="tech-list">
-                    <span class="tech-item">Sistemas Operativos (Linux/Windows)</span>
-                    <span class="tech-item">Algoritmos e Estruturas de Dados</span>
-                    <span class="tech-item">Programação Orientada a Objetos</span>
-                    <span class="tech-item">Desenvolvimento Web</span>
-                    <span class="tech-item">Bases de Dados</span>
+                    <span class="tech-item" data-pt="Sistemas Operativos (Linux/Windows)" data-es="Sistemas Operativos (Linux/Windows)" data-en="Operating Systems (Linux/Windows)">Sistemas Operativos (Linux/Windows)</span>
+                    <span class="tech-item" data-pt="Algoritmos e Estruturas de Dados" data-es="Algoritmos y Estructuras de Datos" data-en="Algorithms and Data Structures">Algoritmos e Estruturas de Dados</span>
+                    <span class="tech-item" data-pt="Programação Orientada a Objetos" data-es="Programación Orientada a Objetos" data-en="Object-Oriented Programming">Programação Orientada a Objetos</span>
+                    <span class="tech-item" data-pt="Desenvolvimento Web e APIs" data-es="Desarrollo Web y APIs" data-en="Web Development & APIs">Desenvolvimento Web e APIs</span>
+                    <span class="tech-item" data-pt="Bases de Dados (SQL/NoSQL)" data-es="Bases de Datos (SQL/NoSQL)" data-en="Databases (SQL/NoSQL)">Bases de Dados (SQL/NoSQL)</span>
                 </div>
             </div>
 
             <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
-                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>idiomas
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>soft_skills
+                </h3>
+                <div class="tech-list">
+                    <span class="tech-item" data-pt="Resolução de Problemas (Debugging eficiente)" data-es="Resolución de Problemas (Debugging eficiente)" data-en="Problem Solving (Efficient Debugging)">Resolução de Problemas (Debugging eficiente)</span>
+                    <span class="tech-item" data-pt="Trabalho em Equipa (Metodologias Ágeis)" data-es="Trabajo en Equipo (Metodologías Ágiles)" data-en="Teamwork (Agile Methodologies)">Trabalho em Equipa (Metodologias Ágeis)</span>
+                    <span class="tech-item" data-pt="Adaptabilidade sob Pressão (Incidentes em Prod)" data-es="Adaptabilidad bajo Presión (Incidentes en Prod)" data-en="Adaptability under Pressure (Prod Incidents)">Adaptabilidade sob Pressão (Incidentes em Prod)</span>
+                    <span class="tech-item" data-pt="Comunicação Eficaz (Code Reviews)" data-es="Comunicación Eficaz (Code Reviews)" data-en="Effective Communication (Code Reviews)">Comunicação Eficaz (Code Reviews)</span>
+                    <span class="tech-item" data-pt="Proatividade (Continuous Learning)" data-es="Proactividad (Continuous Learning)" data-en="Proactivity (Continuous Learning)">Proatividade (Continuous Learning)</span>
+                </div>
+            </div>
+
+            <div class="terminal-card fade-up">
+                <h3 style="display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="idiomas" data-es="idiomas" data-en="languages">idiomas</span>
                 </h3>
                 <div class="language-bar">
-                    <div class="lang-header"><span>Espanhol</span> <span style="font-size: 0.75rem; color: var(--text-secondary);">Nativo - C2</span></div>
+                    <div class="lang-header"><span data-pt="Espanhol" data-es="Español" data-en="Spanish">Espanhol</span> <span style="font-size: 0.75rem; color: var(--text-secondary);" data-pt="Nativo - C2" data-es="Nativo - C2" data-en="Native - C2">Nativo - C2</span></div>
                     <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
                 </div>
                 <div class="language-bar">
-                    <div class="lang-header"><span>Português</span> <span style="font-size: 0.75rem; color: var(--text-secondary);">C2</span></div>
+                    <div class="lang-header"><span data-pt="Português" data-es="Portugués" data-en="Portuguese">Português</span> <span style="font-size: 0.75rem; color: var(--text-secondary);">C2</span></div>
                     <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
                 </div>
                 <div class="language-bar">
-                    <div class="lang-header"><span>Inglês</span> <span style="font-size: 0.75rem; color: var(--text-secondary);">Avançado - C1</span></div>
+                    <div class="lang-header"><span data-pt="Inglês" data-es="Inglés" data-en="English">Inglês</span> <span style="font-size: 0.75rem; color: var(--text-secondary);" data-pt="Avançado - C1" data-es="Avanzado - C1" data-en="Advanced - C1">Avançado - C1</span></div>
                     <div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div>
-                    <p class="sidebar-subtext" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px; text-align: right;">Nível CEFR estudado na Lancaster King's School</p>
+                    <p class="sidebar-subtext" style="font-size: 0.65rem; color: var(--text-secondary); margin-top: 4px; text-align: right;" data-pt="Nível CEFR estudado na Lancaster King's School" data-es="Nivel CEFR estudiado en Lancaster King's School" data-en="CEFR level studied at Lancaster King's School">Nível CEFR estudado na Lancaster King's School</p>
                 </div>
             </div>
 
             <div class="terminal-card fade-up">
                 <h3 style="display: flex; align-items: center; margin-bottom: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; color: #fff;">
-                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span>tecnologias
+                    <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="tecnologias" data-es="tecnologías" data-en="technologies">tecnologias</span>
                 </h3>
                 <div style="margin-bottom: 1.2rem;">
-                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Linguagens]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Python, Java, C/C++, JavaScript</p>
+                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;" data-pt="[Linguagens]" data-es="[Lenguajes]" data-en="[Languages]">[Linguagens]</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Python, Java, C/C++, JS, Bash</p>
                 </div>
                 <div style="margin-bottom: 1.2rem;">
                     <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Web & DB]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> HTML, CSS, SQL</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> HTML, CSS, SQL, MongoDB</p>
                 </div>
                 <div>
-                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Ferramentas]</p>
-                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Git/Github</p>
+                    <p style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.9rem; margin-bottom: 4px;">[Frameworks & Tools]</p>
+                    <p style="color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; font-weight: bold;"><span style="color: var(--accent-green);">>_</span> Linux Ubuntu, Git, Spring Boot, JUnit</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="roadmap-container fade-up">
+            <h3 style="display: flex; align-items: center; color: #fff; font-size: 1.3rem;">
+                <span style="color: var(--accent-green); margin-right: 8px;">~/</span><span data-pt="roadmap_académico" data-es="roadmap_académico" data-en="academic_roadmap">roadmap_académico</span>
+            </h3>
+            <div class="roadmap-track">
+                <div class="roadmap-progress"></div>
+                <div class="roadmap-node completed"><div class="node-point"></div><p data-pt="Secundário" data-es="Secundaria" data-en="High School">Secundário</p></div>
+                <div class="roadmap-node active"><div class="node-point glow"></div><p data-pt="Licenciatura (2º Ano)" data-es="Grado (2º Año)" data-en="Bachelor (2nd Year)">Licenciatura (2º Ano)</p></div>
+                <div class="roadmap-node locked"><div class="node-point"></div><p data-pt="Mestrado" data-es="Máster" data-en="Master's">Mestrado</p></div>
             </div>
         </div>
     </section>
 
-    <!-- SECÇÃO 3: HOBBIES -->
     <section id="hobbies" class="page-section">
         <h2 class="section-title">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            <span><span style="color: var(--text-primary);">~/</span>interesses_e_hobbies</span>
+            <span><span style="color: var(--text-primary);">~/</span><span data-pt="interesses_e_hobbies" data-es="intereses_y_hobbies" data-en="interests_and_hobbies">interesses_e_hobbies</span></span>
         </h2>
 
         <div class="hobbies-list">
-            <!-- Gaming -->
             <div class="hobby-row hobby-gaming fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🎮</span> [gaming]</h3>
-                </div>
-                <p class="hobby-text">Sempre gostei de videojogos. É o meu formato preferido para descontrair no fim do dia e divertir-me com amigos em jogos competitivos e cooperativos.</p>
+                <div class="hobby-header"><h3><span class="hobby-emoji">🎮</span> [gaming]</h3></div>
+                <p class="hobby-text" data-pt="Sempre gostei de videojogos. É o meu formato preferido para descontrair no fim do dia e divertir-me com amigos em jogos competitivos e cooperativos." data-es="Siempre me han gustado los videojuegos. Es mi formato favorito para relajarme al final del día y divertirme con amigos en juegos competitivos y cooperativos." data-en="I've always loved video games. It's my favorite way to unwind at the end of the day and have fun with friends in competitive and cooperative games.">Sempre gostei de videojogos. É o meu formato preferido para descontrair no fim do dia e divertir-me com amigos em jogos competitivos e cooperativos.</p>
                 <div class="hobby-images">
-                    <img src="imagens/gaming 5.jpg" alt="Gaming"> <img src="imagens/gaming 7.jpg" alt="Gaming"> <img src="imagens/gaming 3.jpg" alt="Gaming">
+                    <img src="imagens/gaming_5.jpg" alt="Gaming"> <img src="imagens/gaming_1.jpg" alt="Gaming"> <img src="imagens/gaming_3.jpg" alt="Gaming">
                 </div>
             </div>
 
-            <!-- Gym -->
             <div class="hobby-row hobby-gym fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🏋️‍♂️</span> [gym]</h3>
-                </div>
-                <p class="hobby-text">O ginásio faz parte da minha rotina. É o espaço onde desligo um pouco dos ecrãs, cuido da saúde física e mantenho o corpo ativo.</p>
+                <div class="hobby-header"><h3><span class="hobby-emoji">🏋️‍♂️</span> [gym]</h3></div>
+                <p class="hobby-text" data-pt="O ginásio faz parte da minha rotina. É o espaço onde desligo um pouco dos ecrãs, cuido da saúde física e mantenho o corpo ativo." data-es="El gimnasio es parte de mi rutina. Es el espacio donde me desconecto de las pantallas, cuido mi salud física y mantengo mi cuerpo activo." data-en="The gym is part of my routine. It's the space where I disconnect from screens, take care of my physical health, and keep my body active.">O ginásio faz parte da minha rotina. É o espaço onde desligo um pouco dos ecrãs, cuido da saúde física e mantenho o corpo ativo.</p>
                 <div class="hobby-images">
-                    <img src="imagens/gym 1.png" alt="Gym"> <img src="imagens/gym 2.png" alt="Gym"> <img src="imagens/gym 3.png" alt="Gym">
+                    <img src="imagens/gym_1.png" alt="Gym"> <img src="imagens/gym_2.png" alt="Gym"> <img src="imagens/gym_3.png" alt="Gym">
                 </div>
             </div>
 
-            <!-- Anime / Manga -->
             <div class="hobby-row hobby-anime fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🎌</span> [anime] & [manga]</h3>
-                </div>
-                <p class="hobby-text">Gosto bastante de acompanhar anime e ler manga. Aprecio a arte visual japonesa e é uma ótima forma de entretenimento para relaxar.</p>
+                <div class="hobby-header"><h3><span class="hobby-emoji">🎌</span> [anime] & [manga]</h3></div>
+                <p class="hobby-text" data-pt="Gosto bastante de acompanhar anime e ler manga. Aprecio a arte visual japonesa e é uma ótima forma de entretenimento para relaxar." data-es="Me gusta mucho seguir anime y leer manga. Aprecio el arte visual japonés y es una gran forma de entretenimiento para relajarme." data-en="I really enjoy watching anime and reading manga. I appreciate Japanese visual art, and it's a great form of entertainment to relax.">Gosto bastante de acompanhar anime e ler manga. Aprecio a arte visual japonesa e é uma ótima forma de entretenimento para relaxar.</p>
                 <div class="hobby-images">
-                    <img src="imagens/anime 4.jpeg" alt="Anime"> <img src="imagens/anime 6.jpeg" alt="Anime"> <img src="imagens/anime 5.jpeg" alt="Anime">
+                    <img src="imagens/anime_4.jpeg" alt="Anime"> <img src="imagens/anime_6.jpeg" alt="Anime"> <img src="imagens/anime_5.jpeg" alt="Anime">
                 </div>
             </div>
 
-            <!-- Tecnologia -->
             <div class="hobby-row hobby-tech fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">💻</span> [tecnologia]</h3>
-                </div>
-                <p class="hobby-text">Tenho um interesse genuíno por computadores e software. Gosto de explorar ferramentas novas e perceber como as coisas são montadas por trás dos bastidores.</p>
+                <div class="hobby-header"><h3><span class="hobby-emoji">💻</span> [<span data-pt="tecnologia" data-es="tecnología" data-en="technology">tecnologia</span>]</h3></div>
+                <p class="hobby-text" data-pt="Tenho um interesse genuíno por computadores e software. Gosto de explorar ferramentas novas e perceber como as coisas são montadas por trás dos bastidores." data-es="Tengo un interés genuino por los ordenadores y el software. Me gusta explorar herramientas nuevas y entender cómo se montan las cosas entre bastidores." data-en="I have a genuine interest in computers and software. I like exploring new tools and understanding how things are built behind the scenes.">Tenho um interesse genuíno por computadores e software. Gosto de explorar ferramentas novas e perceber como as coisas são montadas por trás dos bastidores.</p>
                 <div class="hobby-images">
-                    <img src="imagens/tecno 1.jpeg" alt="Tech"> <img src="imagens/tecno 2.jpg" alt="Tech"> <img src="imagens/tecno 4.jpg" alt="Tech">
+                    <img src="imagens/tecno_1.jpeg" alt="Tech"> <img src="imagens/tecno_2.jpg" alt="Tech"> <img src="imagens/tecno_4.jpg" alt="Tech">
                 </div>
             </div>
 
-            <!-- Sportbikes -->
             <div class="hobby-row hobby-r6 fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🏍️</span> [sportbikes] -> Yamaha R6 2000</h3>
-                </div>
-                <p class="hobby-text">Sempre tive um grande fascínio por motos desde a primeira vez que experimentei uma. Gosto imenso da sensação de liberdade e de conduzir, sempre com respeito pela estrada. A minha companheira atual é uma Yamaha R6 do 2000, com a qual também aprendo bastante sobre mecânica.</p>
-                <div class="hobby-images">
-                    <img src="imagens/r6 1.jpg" alt="Yamaha R6"> <img src="imagens/r6 2.jpg" alt="Yamaha R6"> <img src="imagens/r6 6.png" alt="Yamaha R6">
+                <div class="hobby-header"><h3><span class="hobby-emoji">🏍️</span> [sportbikes] -> Yamaha R6 2000</h3></div>
+                <p class="hobby-text" data-pt="Sempre tive um grande fascínio por motas. Gosto imenso da sensação de liberdade e de conduzir. A minha companheira atual é uma Yamaha R6 do 2000, com a qual também aprendo bastante sobre mecânica." data-es="Siempre he tenido una gran fascinación por las motos. Me encanta la sensación de libertad y de conducir. Mi compañera actual es una Yamaha R6 del 2000, con la cual también aprendo bastante sobre mecánica." data-en="I've always been fascinated by motorcycles. I love the feeling of freedom and riding. My current companion is a 2000 Yamaha R6, which also helps me learn a lot about mechanics.">Sempre tive um grande fascínio por motas. Gosto imenso da sensação de liberdade e de conduzir. A minha companheira atual é uma Yamaha R6 do 2000, com a qual também aprendo bastante sobre mecânica.</p>
+                <div class="hobby-images r6-gallery">
+                    <img src="imagens/r6_1.jpg" alt="Yamaha R6"> <img src="imagens/r6_2.jpg" alt="Yamaha R6"> <img src="imagens/r6_4.jpg" alt="Yamaha R6">
                 </div>
             </div>
 
-            <!-- Gata Sasha -->
             <div class="hobby-row hobby-sasha fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🐈‍⬛</span> Meet Sasha 🐾</h3>
-                </div>
-                <p class="hobby-text">Esta é a Sasha, a minha gata e a verdadeira dona da casa. Passa a maior parte do tempo a dormir por perto enquanto estou no computador.</p>
-                <div class="hobby-images">
-                    <img src="imagens/sasha 1.jpg" alt="Sasha"> <img src="imagens/sasha 4.jpeg" alt="Sasha"> <img src="imagens/sasha 5.jpg" alt="Sasha">
+                <div class="hobby-header"><h3><span class="hobby-emoji">🐈‍⬛</span> Meet Sasha 🐾</h3></div>
+                <p class="hobby-text" data-pt="Esta é a Sasha, a minha gata e a verdadeira dona da casa. Passa a maior parte do tempo a dormir por perto enquanto estou no computador." data-es="Esta es Sasha, mi gata y la verdadera dueña de la casa. Pasa la mayor parte del tiempo durmiendo cerca mientras estoy en el ordenador." data-en="This is Sasha, my cat and the real boss of the house. She spends most of her time sleeping nearby while I'm on the computer.">Esta é a Sasha, a minha gata e a verdadeira dona da casa. Passa a maior parte do tempo a dormir por perto enquanto estou no computador.</p>
+                <div class="hobby-images cat-gallery">
+                    <img src="imagens/sasha_1.jpg" alt="Sasha"> <img src="imagens/sasha_4.jpeg" alt="Sasha"> <img src="imagens/sasha_5.jpg" alt="Sasha">
                 </div>
             </div>
 
-            <!-- Gato Felix -->
             <div class="hobby-row hobby-felix fade-up">
-                <div class="hobby-header">
-                    <h3><span class="hobby-emoji">🐈</span> Meet Felix 🐾</h3>
-                </div>
-                <p class="hobby-text">E este é o Félix, o meu outro gato! Amarelo, branco, super peludo e com uns olhos verdes inconfundíveis. É o companheiro perfeito (e o mestre em espalhar pelo pela casa toda).</p>
-                <div class="hobby-images">
-                    <img src="imagens/felix 1.jpg" alt="Gato Felix"> <img src="imagens/felix 2.jpg" alt="Gato Felix"> <img src="imagens/felix 3.jpg" alt="Gato Felix">
+                <div class="hobby-header"><h3><span class="hobby-emoji">🐈</span> Meet Félix 🐾</h3></div>
+                <p class="hobby-text" data-pt="E este é o Félix, o meu outro gato! Amarelo, branco, super peludo e com uns olhos verdes inconfundíveis. É o mestre em espalhar pelo pela casa toda." data-es="¡Y este es Félix, mi otro gato! Amarillo, blanco, súper peludo y con unos ojos verdes inconfundibles. Es el maestro en esparcir pelo por toda la casa." data-en="And this is Félix, my other cat! Yellow, white, super fluffy, and with unmistakable green eyes. He is the master of spreading hair all over the house.">E este é o Félix, o meu outro gato! Amarelo, branco, super peludo e com uns olhos verdes inconfundíveis. É o mestre em espalhar pelo pela casa toda.</p>
+                <div class="hobby-images cat-gallery">
+                    <img src="imagens/felix_1.jpg" alt="Gato Félix"> <img src="imagens/felix_2.jpg" alt="Gato Félix"> <img src="imagens/felix_3.jpg" alt="Gato Félix">
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- SECÇÃO 4: EXPERIÊNCIA -->
     <section id="experiencia" class="page-section">
         <div class="timeline-centered">
             <h2 class="section-title">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                <span><span style="color: var(--text-primary);">~/</span>experiencia</span>
+                <span><span style="color: var(--text-primary);">~/</span><span data-pt="experiência" data-es="experiencia" data-en="experience">experiência</span></span>
             </h2>
             
             <div class="timeline">
-                
                 <div class="timeline-item">
                     <div class="timeline-card fade-up">
                         <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
-                            <span>JUL 2025 - FEV 2026</span>
-                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Tempo Parcial]</span>
+                            <span data-pt="JUL 2025 - FEV 2026" data-es="JUL 2025 - FEB 2026" data-en="JUL 2025 - FEB 2026">JUL 2025 - FEV 2026</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;" data-pt="[Tempo Parcial]" data-es="[Medio Tiempo]" data-en="[Part Time]">[Tempo Parcial]</span>
                         </div>
-                        <h3 style="margin-bottom: 5px;">Colaborador de Restaurante</h3>
+                        <h3 style="margin-bottom: 5px;" data-pt="Colaborador de Restaurante" data-es="Colaborador de Restaurante" data-en="Restaurant Staff">Colaborador de Restaurante</h3>
                         <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Restaurante Gran Sabana</p>
                         
                         <ul>
-                            <li>Gestão de armazém, limpeza e atendimento direto ao cliente.</li>
-                            <li>Desenvolvimento de forte adaptabilidade em situações de elevada pressão.</li>
-                            <li>Interação simpática e atenta, garantindo a satisfação do cliente.</li>
+                            <li data-pt="Gestão de armazém, limpeza e atendimento direto ao cliente." data-es="Gestión de almacén, limpieza y atención directa al cliente." data-en="Warehouse management, cleaning, and direct customer service.">Gestão de armazém, limpeza e atendimento direto ao cliente.</li>
+                            <li><span data-pt="Desenvolvimento de forte adaptabilidade em situações de elevada pressão" data-es="Desarrollo de fuerte adaptabilidad en situaciones de alta presión" data-en="Developed strong adaptability in high-pressure situations">Desenvolvimento de forte adaptabilidade em situações de elevada pressão</span> <strong data-pt="(Capacidade para manter a calma na resolução de bugs críticos em produção)." data-es="(Capacidad para mantener la calma resolviendo bugs críticos en producción)." data-en="(Ability to stay calm when resolving critical bugs in production).">(Capacidade para manter a calma na resolução de bugs críticos em produção).</strong></li>
+                            <li data-pt="Interação empática e atenta, garantindo a satisfação do cliente." data-es="Interacción empática y atenta, garantizando la satisfacción del cliente." data-en="Empathetic and attentive interaction, ensuring customer satisfaction.">Interação empática e atenta, garantindo a satisfação do cliente.</li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tag tag-blue">atendimento_ao_cliente</span>
-                            <span class="tag tag-orange">trabalho_sob_pressão</span>
-                            <span class="tag tag-green">gestão_do_tempo</span>
+                            <span class="tag tag-blue" data-pt="atendimento_ao_cliente" data-es="atención_al_cliente" data-en="customer_service">atendimento_ao_cliente</span>
+                            <span class="tag tag-orange" data-pt="trabalho_sob_pressão" data-es="trabajo_bajo_presión" data-en="work_under_pressure">trabalho_sob_pressão</span>
+                            <span class="tag tag-green" data-pt="gestão_do_tempo" data-es="gestión_del_tiempo" data-en="time_management">gestão_do_tempo</span>
                         </div>
                     </div>
                 </div>
@@ -258,26 +292,20 @@
                 <div class="timeline-item">
                     <div class="timeline-card fade-up" style="animation-delay: 0.2s;">
                         <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
-                            <span>09 ABR 2025 - 16 ABR 2025</span>
-                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Tempo Inteiro]</span>
+                            <span data-pt="09 ABR 2025 - 16 ABR 2025" data-es="09 ABR 2025 - 16 ABR 2025" data-en="APR 09 2025 - APR 16 2025">09 ABR 2025 - 16 ABR 2025</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;" data-pt="[Tempo Inteiro]" data-es="[Tiempo Completo]" data-en="[Full Time]">[Tempo Inteiro]</span>
                         </div>
-                        <h3 style="margin-bottom: 5px;">Guia de Rebel Island</h3>
+                        <h3 style="margin-bottom: 5px;" data-pt="Guia de Rebel Island" data-es="Guía de Rebel Island" data-en="Rebel Island Guide">Guia de Rebel Island</h3>
                         <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Rebel Island 2025</p>
                                 
                         <ul>
-                            <li>Liderança de grupos de estudantes em viagens e estadias.</li>
-                            <li>Coordenação de atividades de segurança, bem-estar e entretenimento.</li>
-                            <li>Comunicação proativa e trabalho em equipa para uma experiência positiva.</li>
+                            <li data-pt="Liderança de grupos de estudantes em viagens e estadias." data-es="Liderazgo de grupos de estudiantes en viajes y estancias." data-en="Leadership of student groups during trips and stays.">Liderança de grupos de estudantes em viagens e estadias.</li>
+                            <li><span data-pt="Comunicação proativa e trabalho em equipa constante" data-es="Comunicación proactiva y trabajo en equipo constante" data-en="Proactive communication and constant teamwork">Comunicação proativa e trabalho em equipa constante</span> <strong data-pt="(Habilidades fundamentais para metodologias ágeis e Pair Programming)." data-es="(Habilidades fundamentales para metodologías ágiles y Pair Programming)." data-en="(Fundamental skills for agile methodologies and Pair Programming).">(Habilidades fundamentais para metodologias ágeis e Pair Programming).</strong></li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tag tag-blue">liderança_de_grupos</span>
-                            <span class="tag tag-green">trabalho_em_equipa</span>
-                            <span class="tag tag-orange">proatividade</span>
-                        </div>
-                        <div class="exp-images">
-                            <img src="imagens/rebel 1.png" alt="Rebel Island">
-                            <img src="imagens/rebel 2.jpg" alt="Rebel Island">
-                            <img src="imagens/rebel 3.jpg" alt="Rebel Island">
+                            <span class="tag tag-blue" data-pt="liderança_de_grupos" data-es="liderazgo_de_grupos" data-en="group_leadership">liderança_de_grupos</span>
+                            <span class="tag tag-green" data-pt="trabalho_em_equipa" data-es="trabajo_en_equipo" data-en="teamwork">trabalho_em_equipa</span>
+                            <span class="tag tag-orange" data-pt="proatividade" data-es="proactividad" data-en="proactivity">proatividade</span>
                         </div>
                     </div>
                 </div>
@@ -285,26 +313,20 @@
                 <div class="timeline-item">
                     <div class="timeline-card fade-up" style="animation-delay: 0.4s;">
                         <div class="card-date" style="display: flex; flex-direction: column; align-items: flex-end;">
-                            <span>SET 2023 - MAI 2025</span>
-                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;">[Atividades Isoladas]</span>
+                            <span data-pt="SET 2023 - MAI 2025" data-es="SEP 2023 - MAY 2025" data-en="SEP 2023 - MAY 2025">SET 2023 - MAI 2025</span>
+                            <span style="color: var(--accent-green); font-size: 0.75rem; margin-top: 4px; font-weight: bold;" data-pt="[Atividades Isoladas]" data-es="[Actividades Aisladas]" data-en="[Isolated Activities]">[Atividades Isoladas]</span>
                         </div>
-                        <h3 style="margin-bottom: 5px;">Guia de Eventos</h3>
-                        <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>Vários organizadores</p>
+                        <h3 style="margin-bottom: 5px;" data-pt="Guia de Eventos" data-es="Guía de Eventos" data-en="Event Guide">Guia de Eventos</h3>
+                        <p class="company"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span data-pt="Vários organizadores" data-es="Varios organizadores" data-en="Various organizers">Vários organizadores</span></p>
                         
                         <ul>
-                            <li>Logística e coordenação operacional em grandes eventos internacionais e universitários.</li>
-                            <li>Gestão centralizada de horários e recursos essenciais para o funcionamento.</li>
-                            <li>Controlo de detalhes e trabalho sob pressão para garantir o sucesso dos eventos.</li>
+                            <li data-pt="Logística e coordenação operacional em grandes eventos." data-es="Logística y coordinación operacional en grandes eventos." data-en="Logistics and operational coordination in large events.">Logística e coordenação operacional em grandes eventos.</li>
+                            <li><span data-pt="Gestão centralizada de horários e resolução de conflitos" data-es="Gestión centralizada de horarios y resolución de conflictos" data-en="Centralized schedule management and conflict resolution">Gestão centralizada de horários e resolução de conflitos</span> <strong data-pt="(Experiência útil para resolver conflitos de código e coordenar integrações entre equipas)." data-es="(Experiencia útil para resolver conflictos de código y coordinar integraciones entre equipos)." data-en="(Useful experience for resolving code conflicts and coordinating team integrations).">(Experiência útil para resolver conflitos de código e coordenar integrações entre equipas).</strong></li>
                         </ul>
                         <div class="tech-tags">
-                            <span class="tag tag-orange">gestão_de_conflitos</span>
-                            <span class="tag tag-blue">logística</span>
-                            <span class="tag tag-green">coordenação_entre_equipas</span>
-                        </div>
-                        <div class="exp-images">
-                            <img src="imagens/eventos 1.jpg" alt="Eventos">
-                            <img src="imagens/eventos 2.jpg" alt="Eventos">
-                            <img src="imagens/eventos 3.jpg" alt="Eventos">
+                            <span class="tag tag-orange" data-pt="gestão_de_conflitos" data-es="gestión_de_conflictos" data-en="conflict_management">gestão_de_conflitos</span>
+                            <span class="tag tag-blue" data-pt="logística" data-es="logística" data-en="logistics">logística</span>
+                            <span class="tag tag-green" data-pt="coordenação_entre_equipas" data-es="coordinación_entre_equipos" data-en="cross-team_coordination">coordenação_entre_equipas</span>
                         </div>
                     </div>
                 </div>
@@ -312,11 +334,10 @@
         </div>
     </section>
 
-    <!-- SECÇÃO 5: PROJETOS -->
     <section id="projetos" class="page-section">
         <h2 class="section-title">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 12px;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-            <span><span style="color: var(--text-primary);">~/</span>projetos</span>
+            <span><span style="color: var(--text-primary);">~/</span><span data-pt="projetos" data-es="proyectos" data-en="projects">projetos</span></span>
         </h2>
         
         <div class="projects-grid">
@@ -324,21 +345,23 @@
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
-                            <h3>Monitorização Climática</h3>
-                            <a href="https://github.com/SpringCattt/projeto---topicos-avancados-de-base-de-dados" target="_blank" title="Ver código fonte" style="color: var(--text-secondary); transition: all 0.3s ease;" onmouseover="this.style.color='var(--accent-green)'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                            <h3 data-pt="Monitorização Climática" data-es="Monitorización Climática" data-en="Climate Monitoring">Monitorização Climática</h3>
+                            <a href="https://github.com/SpringCattt/projeto---topicos-avancados-de-base-de-dados" target="_blank" title="Ver código fonte">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             </a>
                         </div>
                         <div class="project-meta-wrapper">
-                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);">2º Semestre 2025/2026</span>
+                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);" data-pt="2º Semestre 2025/2026" data-es="2º Semestre 2025/2026" data-en="2nd Semester 2025/2026">2º Semestre 2025/2026</span>
                             <span style="color: var(--border-color);">|</span>
-                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Tópicos Avançados BD</span>
+                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;" data-pt="Tópicos Avançados BD" data-es="Tópicos Avanzados BD" data-en="Advanced Database Topics">Tópicos Avançados BD</span>
                         </div>
                     </div>
-                    <p class="description">Aplicação web desenvolvida com backend em Java para processamento de dados meteorológicos. Utiliza uma base de dados NoSQL (MongoDB) para armazenar grandes volumes de informação climática, apresentando os resultados através de mapas interativos e consultas geoespaciais na interface de utilizador.</p>
+                    <p class="description"><span data-pt="Aplicação web com backend em Java." data-es="Aplicación web con backend en Java." data-en="Web application with Java backend.">Aplicação web com backend em Java.</span> <strong data-pt="Otimizou consultas geoespaciais complexas" data-es="Optimizó consultas geoespaciales complejas" data-en="Optimized complex geospatial queries">Otimizou consultas geoespaciais complexas</strong> <span data-pt="utilizando MongoDB, permitindo o armazenamento e visualização de grandes volumes de informação climática através de mapas interativos." data-es="utilizando MongoDB, permitiendo el almacenamiento y visualización de grandes volúmenes de información climática a través de mapas interactivos." data-en="using MongoDB, enabling the storage and visualization of large volumes of climate information through interactive maps.">utilizando MongoDB, permitindo o armazenamento e visualização de grandes volumes de informação climática através de mapas interativos.</span></p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[java]</span> <span class="code-tag">[mongodb]</span> <span class="code-tag">[javascript]</span>
+                    <span class="code-tag tag-java">[java]</span> 
+                    <span class="code-tag tag-mongodb">[mongodb]</span> 
+                    <span class="code-tag tag-javascript">[javascript]</span>
                 </div>
             </div>
 
@@ -346,21 +369,23 @@
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
-                            <h3>Gestor de Eventos</h3>
-                            <a href="https://github.com/SpringCattt/Projeto-em-Desenvolvimento-de-Aplicacoes---CAA" target="_blank" title="Ver código fonte" style="color: var(--text-secondary); transition: all 0.3s ease;" onmouseover="this.style.color='var(--accent-green)'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                            <h3 data-pt="Gestor de Eventos CAA" data-es="Gestor de Eventos CAA" data-en="CAA Event Manager">Gestor de Eventos CAA</h3>
+                            <a href="https://github.com/SpringCattt/Projeto-em-Desenvolvimento-de-Aplicacoes---CAA" target="_blank" title="Ver código fonte">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             </a>
                         </div>
                         <div class="project-meta-wrapper">
-                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);">1º Semestre 2025/2026</span>
+                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);" data-pt="1º Semestre 2025/2026" data-es="1º Semestre 2025/2026" data-en="1st Semester 2025/2026">1º Semestre 2025/2026</span>
                             <span style="color: var(--border-color);">|</span>
-                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Desenvolvimento de Apps</span>
+                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;" data-pt="Desenvolvimento de Apps" data-es="Desarrollo de Apps" data-en="App Development">Desenvolvimento de Apps</span>
                         </div>
                     </div>
-                    <p class="description">Projeto em grupo. O objetivo principal do sistema é automatizar e simplificar o processo de gestão de eventos do CAA (Centro de Artes de Águeda), permitindo o controlo centralizado de reservas e horários.</p>
+                    <p class="description"><strong data-pt="Automatizou e centralizou o controlo de reservas" data-es="Automatizó y centralizó el control de reservas" data-en="Automated and centralized reservation control">Automatizou e centralizou o controlo de reservas</strong> <span data-pt="e horários do Centro de Artes de Águeda. Sistema desenvolvido com forte foco nos pilares da POO e arquitetura MVC." data-es="y horarios del Centro de Artes de Águeda. Sistema desarrollado con un fuerte enfoque en los pilares de POO y arquitectura MVC." data-en="and schedules for the Águeda Arts Center. System developed with a strong focus on OOP pillars and MVC architecture.">e horários do Centro de Artes de Águeda. Sistema desenvolvido com forte foco nos pilares da POO e arquitetura MVC.</span></p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[java]</span> <span class="code-tag">[poo]</span> <span class="code-tag">[sql]</span>
+                    <span class="code-tag tag-java">[java]</span> 
+                    <span class="code-tag tag-poo">[poo]</span> 
+                    <span class="code-tag tag-sql">[sql]</span>
                 </div>
             </div>
         
@@ -369,20 +394,22 @@
                     <div class="project-header">
                         <div class="project-title-wrapper">
                             <h3>Trust Fund</h3>
-                            <a href="https://github.com/SpringCattt/Projeto---Trust-Fund" target="_blank" title="Ver código fonte" style="color: var(--text-secondary); transition: all 0.3s ease;" onmouseover="this.style.color='var(--accent-green)'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                            <a href="https://github.com/SpringCattt/Projeto---Trust-Fund" target="_blank" title="Ver código fonte">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             </a>
                         </div>
                         <div class="project-meta-wrapper">
-                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);">2º Semestre 2024/2025</span>
+                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);" data-pt="2º Semestre 2024/2025" data-es="2º Semestre 2024/2025" data-en="2nd Semester 2024/2025">2º Semestre 2024/2025</span>
                             <span style="color: var(--border-color);">|</span>
-                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Laboratórios de Informática</span>
+                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;" data-pt="Laboratórios de Informática" data-es="Laboratorios de Informática" data-en="Computer Labs">Laboratórios de Informática</span>
                         </div>
                     </div>
-                    <p class="description">Projeto em grupo. O Trust-Fund é uma plataforma web de gestão financeira pessoal desenvolvida para a cadeira de Laboratórios de Informática. Permite aos utilizadores registar transações e consultar o saldo histórico.</p>
+                    <p class="description"><span data-pt="Plataforma web de gestão financeira." data-es="Plataforma web de gestión financiera." data-en="Financial management web platform.">Plataforma web de gestão financeira.</span> <strong data-pt="Resolveu o problema da dispersão de dados pessoais" data-es="Resolvió el problema de la dispersión de datos personales" data-en="Solved the problem of scattered personal data">Resolveu o problema da dispersão de dados pessoais</strong> <span data-pt="criando um dashboard centralizado para rastrear despesas e histórico de saldos." data-es="creando un dashboard centralizado para rastrear gastos e historial de saldos." data-en="by creating a centralized dashboard to track expenses and balance history.">criando um dashboard centralizado para rastrear despesas e histórico de saldos.</span></p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[php]</span> <span class="code-tag">[css]</span> <span class="code-tag">[javascript]</span>
+                    <span class="code-tag tag-php">[php]</span> 
+                    <span class="code-tag tag-css">[css]</span> 
+                    <span class="code-tag tag-javascript">[javascript]</span>
                 </div>
             </div>
             
@@ -390,32 +417,73 @@
                 <div>
                     <div class="project-header">
                         <div class="project-title-wrapper">
-                            <h3>Simulador Concorrente</h3>
-                            <a href="https://github.com/SpringCattt/Projeto---Sistemas-Operativos" target="_blank" title="Ver código fonte" style="color: var(--text-secondary); transition: all 0.3s ease;" onmouseover="this.style.color='var(--accent-green)'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-secondary)'; this.style.transform='scale(1)';">
+                            <h3 data-pt="Simulador Concorrente" data-es="Simulador Concurrente" data-en="Concurrent Simulator">Simulador Concorrente</h3>
+                            <a href="https://github.com/SpringCattt/Projeto---Sistemas-Operativos" target="_blank" title="Ver código fonte">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                             </a>
                         </div>
                         <div class="project-meta-wrapper">
-                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);">2º Semestre 2024/2025</span>
+                            <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--text-secondary);" data-pt="2º Semestre 2024/2025" data-es="2º Semestre 2024/2025" data-en="2nd Semester 2024/2025">2º Semestre 2024/2025</span>
                             <span style="color: var(--border-color);">|</span>
-                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;">Sistemas Operativos</span>
+                            <span style="color: var(--accent-green); font-family: var(--font-code); font-size: 0.85rem;" data-pt="Sistemas Operativos" data-es="Sistemas Operativos" data-en="Operating Systems">Sistemas Operativos</span>
                         </div>
                     </div>
-                    <p class="description">O principal objetivo do projeto foi aplicar conceitos de processamento concorrente, memória partilhada e sincronização de processos em Python, simulando o comportamento de pacientes e médicos num ambiente hospitalar.</p>
+                    <p class="description"><strong data-pt="Evitou bloqueios (deadlocks) e condições de corrida" data-es="Evitó bloqueos (deadlocks) y condiciones de carrera" data-en="Prevented deadlocks and race conditions">Evitou bloqueios (deadlocks) e condições de corrida</strong> <span data-pt="utilizando semáforos e memória partilhada em Python, simulando o comportamento paralelo de pacientes e médicos num hospital." data-es="utilizando semáforos y memoria compartida en Python, simulando el comportamiento paralelo de pacientes y médicos en un hospital." data-en="using semaphores and shared memory in Python, simulating the parallel behavior of patients and doctors in a hospital.">utilizando semáforos e memória partilhada em Python, simulando o comportamento paralelo de pacientes e médicos num hospital.</span></p>
                 </div>
                 <div class="tech-tags">
-                    <span class="code-tag">[python]</span> <span class="code-tag">[processamento_concorrente]</span>
+                    <span class="code-tag tag-python">[python]</span> 
+                    <span class="code-tag tag-processamento" data-pt="[processamento_concorrente]" data-es="[procesamiento_concurrente]" data-en="[concurrent_processing]">[processamento_concorrente]</span>
+                    <span class="code-tag tag-linux">[linux]</span>
                 </div>
             </div>
         </div>
 
-        <div class="projects-footer fade-up">
+        <div class="projects-footer fade-up" style="margin-bottom: 2rem;">
             <span class="terminal-cursor" style="color: var(--accent-green); font-weight: bold;">>_</span> 
-            <span>cat ~/mais_projetos.txt <span style="color: var(--accent-color); margin: 0 5px;">-></span> Consulte o meu <a href="https://github.com/SpringCattt" target="_blank" class="link-destaque">perfil de Github</a> para uma lista completa de projetos académicos e pessoais.</span>
+            <span>cat ~/mais_projetos.txt <span style="color: var(--accent-color); margin: 0 5px;">-></span> <span data-pt="Consulte o meu" data-es="Consulta mi" data-en="Check out my">Consulte o meu</span> <a href="https://github.com/SpringCattt" target="_blank" class="link-destaque" data-pt="perfil de Github" data-es="perfil de Github" data-en="Github profile">perfil de Github</a> <span data-pt="para uma lista completa." data-es="para una lista completa." data-en="for a complete list.">para uma lista completa.</span></span>
         </div>
+
+        <div id="interactive-terminal" class="terminal-card fade-up" style="max-width: 800px; margin: 0 auto; background: rgba(10, 14, 20, 0.95); border-color: var(--accent-green);">
+            <div class="terminal-header" style="display: flex; gap: 8px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color);">
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
+                <span style="font-family: var(--font-code); font-size: 0.8rem; color: var(--text-secondary); margin-left: 10px;">bash - juan@portfolio</span>
+            </div>
+            
+            <div id="term-output" style="font-family: var(--font-code); font-size: 0.95rem; color: var(--text-primary); margin-bottom: 10px; white-space: pre-wrap;" data-pt="Bem-vindo à terminal interativa. Escreve 'help' para ver os comandos." data-es="Bienvenido a la terminal interactiva. Escribe 'help' para ver los comandos." data-en="Welcome to the interactive terminal. Type 'help' to see commands.">Bem-vindo à terminal interativa. Escreve 'help' para ver os comandos.</div>
+            
+            <div class="terminal-input-line" style="display: flex; align-items: center; font-family: var(--font-code); font-size: 0.95rem;">
+                <span style="color: var(--accent-green); margin-right: 8px;">juan@portfolio:~$</span>
+                <input type="text" id="term-input" autocomplete="off" spellcheck="false" style="background: transparent; border: none; color: var(--text-primary); font-family: var(--font-code); font-size: 0.95rem; outline: none; flex-grow: 1; width: 100%;">
+            </div>
+
+            <div id="terminal-contact-form" style="display: none; margin-top: 20px; border-top: 1px dashed var(--border-color); padding-top: 15px;">
+                <p style="color: var(--accent-green); font-family: var(--font-code); margin-bottom: 15px; font-size: 0.95rem;">
+                    <span data-pt="A iniciar protocolo de contacto seguro..." data-es="Iniciando protocolo de contacto seguro..." data-en="Initiating secure contact protocol...">A iniciar protocolo de contacto seguro...</span>
+                </p>
+                <form id="consoleForm" style="display: flex; flex-direction: column; gap: 12px; font-family: var(--font-code);">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span style="color: var(--text-secondary); width: 85px;">>_ <span data-pt="Email:" data-es="Email:" data-en="Email:">Email:</span></span>
+                        <input type="email" id="senderEmail" required style="background: rgba(13, 17, 23, 0.5); border: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-code); padding: 6px 10px; outline: none; flex-grow: 1; border-radius: 4px;">
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <span style="color: var(--text-secondary); width: 85px;">>_ <span data-pt="Assunto:" data-es="Asunto:" data-en="Subject:">Assunto:</span></span>
+                        <input type="text" id="senderSubject" required style="background: rgba(13, 17, 23, 0.5); border: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-code); padding: 6px 10px; outline: none; flex-grow: 1; border-radius: 4px;">
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                        <span style="color: var(--text-secondary); width: 85px;">>_ <span data-pt="Mensagem:" data-es="Mensaje:" data-en="Message:">Mensagem:</span></span>
+                        <textarea id="senderMessage" required rows="3" style="background: rgba(13, 17, 23, 0.5); border: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-code); padding: 6px 10px; outline: none; flex-grow: 1; resize: vertical; border-radius: 4px;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 10px;">
+                        <button type="submit" class="btn-terminal" style="padding: 8px 15px; font-size: 0.9rem;" data-pt="[ Enviar pacote TCP ]" data-es="[ Enviar paquete TCP ]" data-en="[ Send TCP packet ]">[ Enviar pacote TCP ]</button>
+                        <button type="button" id="cancelConsoleForm" class="btn-terminal" style="padding: 8px 15px; font-size: 0.9rem; border-color: #ff5555; color: #ff5555;" data-pt="[ Cancelar ]" data-es="[ Cancelar ]" data-en="[ Cancel ]">[ Cancelar ]</button>
+                    </div>
+                </form>
+            </div>
+            </div>
     </section>
 
-    <!-- MODAIS E TICKER GLOBAIS -->
     <div id="videoModal" class="modal">
         <div class="modal-content animate-pop">
             <span class="close-btn" id="closeVideoBtn">&times;</span>
@@ -436,13 +504,16 @@
     </div>
 
     <div class="ticker-wrap">
-        <div class="ticker-move">
+        <div class="ticker-move" id="ticker-content">
+            <!-- GRUPO 1 -->
             <div class="ticker-item"><span class="accent">>_</span> SYSTEM.STATUS: <span style="color: #c9d1d9;">ONLINE</span></div>
             <div class="ticker-item"><span class="accent">>_</span> LEARNING.CURVE: <span style="color: #c9d1d9;">EXPONENTIAL</span></div>
             <div class="ticker-item"><span class="accent">>_</span> BUSCANDO_NOVA_OPORTUNIDADE</div>
             <div class="ticker-item"><span class="accent">>_</span> GITHUB.COMMITS: <span style="color: #c9d1d9;">++</span></div>
             <div class="ticker-item"><span class="accent">>_</span> DEPLOYING_NEW_MODULES...</div>
             <div class="ticker-item"><span class="accent">>_</span> CAFEINA_LEVEL: <span style="color: #c9d1d9;">99%</span></div>
+            
+            <!-- GRUPO 2 (CLON EXACTO PARA EL BUCLE INVISIBLE) -->
             <div class="ticker-item"><span class="accent">>_</span> SYSTEM.STATUS: <span style="color: #c9d1d9;">ONLINE</span></div>
             <div class="ticker-item"><span class="accent">>_</span> LEARNING.CURVE: <span style="color: #c9d1d9;">EXPONENTIAL</span></div>
             <div class="ticker-item"><span class="accent">>_</span> BUSCANDO_NOVA_OPORTUNIDADE</div>
@@ -452,6 +523,19 @@
         </div>
     </div>
 
+    <audio id="achievSound" src="https://cdn.pixabay.com/audio/2021/08/04/audio_0625c1539c.mp3" preload="auto"></audio>
+    <button id="backToTop" title="Voltar ao início">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+
+    <div id="xbox-achievement">
+        <div class="achiev-icon">🏆</div>
+        <div class="achiev-text">
+            <h4 data-pt="Conquista Desbloqueada" data-es="Logro Desbloqueado" data-en="Achievement Unlocked">Conquista Desbloqueada</h4>
+            <p data-pt="CV Transferido - 50G" data-es="CV Descargado - 50G" data-en="CV Downloaded - 50G">CV Transferido - 50G</p>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
