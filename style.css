@@ -533,64 +533,47 @@ video { width: 100%; border-radius: 4px; outline: none; }
 /* MEDIA QUERIES (RESPONSIVO)                 */
 /* ========================================== */
 @media (max-width: 900px) {
-    .sobre-grid { grid-template-columns: 1fr; }
-    .nav-links { gap: 1rem; font-size: 0.85rem; flex-wrap: wrap; justify-content: center;}
-    .nav-controls { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: 10px; width: 100%; justify-content: center;}
+    /* 1. Arreglo de la Navbar y botones de idioma */
+    .nav-container { 
+        flex-direction: column; 
+        gap: 8px; 
+    }
+    .nav-links { 
+        gap: 1rem; 
+        font-size: 0.85rem; 
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    .nav-controls { 
+        position: relative; /* ¡CRÍTICO: Le quita el modo "flotante" del escritorio! */
+        right: auto;
+        border-left: none; 
+        padding-left: 0; 
+        border-top: 1px dashed var(--border-color); 
+        padding-top: 10px; 
+        width: 100%; 
+        justify-content: center;
+    }
     nav { padding: 0.8rem 0; }
-    #inicio { padding-top: 120px; } 
+    
+    /* 2. Reducción de Títulos en Móvil para mejor UX */
+    #inicio { padding-top: 140px; } /* Ajuste extra por si la navbar queda más alta */
+    #inicio h1 { font-size: 1.5rem; }
+    .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .typewriter { font-size: 0.95rem; }
+
+    /* 3. Estructura general a 1 columna */
+    .sobre-grid { grid-template-columns: 1fr; }
     .exp-images, .hobby-images { grid-template-columns: 1fr; }
     
+    /* 4. Estilos extra de la Terminal en Móvil */
     #consoleForm input:focus, #consoleForm textarea:focus {
         border-color: var(--accent-color) !important;
         box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
     }
-
     #cancelConsoleForm:hover {
         background-color: rgba(255, 85, 85, 0.1) !important;
         box-shadow: 0 0 15px rgba(255, 85, 85, 0.4) !important;
         transform: scale(1.05);
     }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-
-    .terminal-cursor { 
-        animation: blink 1s step-end infinite; 
-    }
-}
-
-/* ========================================== */
-/* MEDIA QUERIES (RESPONSIVO)                 */
-/* ========================================== */
-@media (max-width: 900px) {
-    .sobre-grid { grid-template-columns: 1fr; }
-    .nav-links { gap: 1rem; font-size: 0.85rem; flex-wrap: wrap; justify-content: center;}
-    .nav-controls { border-left: none; padding-left: 0; border-top: 1px solid var(--border-color); padding-top: 10px; width: 100%; justify-content: center;}
-    nav { padding: 0.8rem 0; }
-    #inicio { padding-top: 120px; } /* Más espacio para la navbar expandida */
-    .exp-images, .hobby-images { grid-template-columns: 1fr; }
-}
-/* ========================================== */
-/* FORMULARIO DE CONTACTO EN TERMINAL         */
-/* ========================================== */
-#consoleForm input:focus, #consoleForm textarea:focus {
-    border-color: var(--accent-color) !important;
-    box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-}
-
-#cancelConsoleForm:hover {
-    background-color: rgba(255, 85, 85, 0.1) !important;
-    box-shadow: 0 0 15px rgba(255, 85, 85, 0.4) !important;
-    transform: scale(1.05);
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.terminal-cursor { 
-    animation: blink 1s step-end infinite; 
 }
