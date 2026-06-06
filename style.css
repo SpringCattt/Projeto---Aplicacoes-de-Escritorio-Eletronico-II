@@ -539,10 +539,11 @@ video { width: 100%; border-radius: 4px; outline: none; }
         gap: 8px; 
     }
     .nav-links { 
-        gap: 1rem; 
-        font-size: 0.85rem; 
-        flex-wrap: wrap; 
+        gap: 0.6rem;       /* Reducido de 1rem para ganar espacio horizontal */
+        font-size: 0.8rem;   /* Reducido de 0.85rem para que entren textos largos */
+        flex-wrap: nowrap;   /* Bloquea por completo el salto de línea */
         justify-content: center;
+        width: 100%;
     }
     .nav-controls { 
         position: relative; /* ¡CRÍTICO: Le quita el modo "flotante" del escritorio! */
@@ -575,5 +576,16 @@ video { width: 100%; border-radius: 4px; outline: none; }
         background-color: rgba(255, 85, 85, 0.1) !important;
         box-shadow: 0 0 15px rgba(255, 85, 85, 0.4) !important;
         transform: scale(1.05);
+    }
+    card-date {
+        position: relative;
+        top: 0;
+        right: 0;
+        align-items: flex-start !important; /* Fuerza la alineación a la izquierda */
+        margin-bottom: 12px;
+    }
+    
+    .timeline-card h3 {
+        padding-right: 0; /* Le devuelve todo el ancho al título para que no se corte */
     }
 }
